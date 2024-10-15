@@ -1,4 +1,3 @@
-import React from 'react'
 import live from '../assets/icons/live.png'
 import time from '../assets/icons/time.png'
 import call from '../assets/icons/call.png'

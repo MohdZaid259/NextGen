@@ -1,18 +1,8 @@
-import React from 'react'
-import aelojuice from '../assets/juice/aelojuice.jpeg'
-import basil from '../assets/juice/basil.jpeg'
-import ginger from '../assets/juice/ginger.jpeg'
-import mint from '../assets/juice/mint.jpeg'
-import j1 from '../assets/juice/j1.jpeg'
-import j2 from '../assets/juice/j2.jpeg'
-import j3 from '../assets/juice/j3.jpeg'
-import j4 from '../assets/juice/j4.jpeg'
-import j5 from '../assets/juice/j5.jpeg'
-import j6 from '../assets/juice/j6.jpeg'
 import {motion} from 'framer-motion'
 import ProCard from './ProCard'
 import link from '../assets/icons/link.png'
 import { useNavigate } from 'react-router-dom'
+import {juice} from './ProductData.js'
 
 function Juice() {
   const navigate=useNavigate()
@@ -21,58 +11,6 @@ function Juice() {
     hidden:{opacity:0,scale:0},
     visible:{opacity:1,scale:1,transition:{delay:0.5, duration:0.5}}
   }
-  const juice = [
-    {
-      title:'Aloe Vera juice',
-      image:aelojuice,
-      price:'49.00'
-    },
-    {
-      title:'Ginger Turmeric juice',
-      image:ginger,
-      price:"19.00"
-    },
-    {
-      title:'Mint Lemon juice',
-      image:mint,
-      price:'19.00'
-    },
-    {
-      title:'Holy Basil juice',
-      image:basil,
-      price:'39.00'
-    },
-    {
-      title:'Cabbage juice',
-      image:j1,
-      price:'49.00'
-    },
-    {
-      title:'Anonymous juice',
-      image:j2,
-      price:"29.00"
-    },
-    {
-      title:'Bitter groud juice',
-      image:j3,
-      price:'19.00'
-    },
-    {
-      title:'Turnip juice',
-      image:j4,
-      price:'39.00'
-    },
-    {
-      title:'Orange juice',
-      image:j5,
-      price:'29.00'
-    },
-    {
-      title:'Bitter groud juice',
-      image:j6,
-      price:"21.00"
-    },
-  ]
 
   return (
     <>

@@ -1,82 +1,16 @@
-import React from 'react'
-import clay from '../assets/soap/clay.jpg'
-import khadi from '../assets/soap/khadi.png'
-import lav from '../assets/soap/lav.jpeg'
-import shea from '../assets/soap/shea.webp'
-import s1 from '../assets/soap/s1.jpeg'
-import s2 from '../assets/soap/s2.jpeg'
-import s3 from '../assets/soap/s3.jpeg'
-import s4 from '../assets/soap/s4.jpeg'
-import s5 from '../assets/soap/s5.jpeg'
-import s6 from '../assets/soap/s6.jpeg'
 import { motion} from 'framer-motion'
 import ProCard from './ProCard'
 import link from '../assets/icons/link.png'
 import { useNavigate } from 'react-router-dom'
+import {soap} from './ProductData.js'
 
 function Soap() {
   const navigate=useNavigate()
 
-  const textVariants = {
-    hidden: { opacity: 0, y:-50},
-    visible:{opacity: 1, y:0, transition:{staggerChildren:0.3}}
-  }
   const heading ={
     hidden:{opacity:0,scale:0},
     visible:{opacity:1,scale:1,transition:{delay:0.5, duration:0.5}}
   }
-  const soap = [
-    {
-      title:'Lavender soap',
-      image:lav,
-      price:'24.00'
-    },
-    {
-      title:'Shea Butter soap',
-      image:shea,
-      price:'21.00'
-    },
-    {
-      title:'Khadi Natural soap',
-      image:khadi,
-      price:'21.00'
-    }, 
-    {
-      title:'Pink Clay soap',
-      image:clay,
-      price:'19.00'
-    },
-    {
-      title:'Lavender soap',
-      image:s1,
-      price:'34.00'
-    },
-    {
-      title:'Shea Butter soap',
-      image:s2,
-      price:'29.00'
-    },
-    {
-      title:'Khadi Natural soap',
-      image:s3,
-      price:'19.00'
-    }, 
-    {
-      title:'Pink Clay soap',
-      image:s4,
-      price:'19.00'
-    },
-    {
-      title:'Lavender soap',
-      image:s5,
-      price:'19.00'
-    },
-    {
-      title:'Shea Butter soap',
-      image:s6,
-      price:'19.00'
-    },
-  ]
 
   return (
     <>

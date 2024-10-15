@@ -1,4 +1,3 @@
-import React from 'react'
 import b1 from '../assets/brands/b1.png'
 import b2 from '../assets/brands/b2.png'
 import b3 from '../assets/brands/b3.png'
@@ -16,7 +15,7 @@ function Brands() {
     <>
       <div className='overflow-x-hidden'>
         <motion.p initial={{opacity:0}} whileInView={{opacity:1}} transition={{duration:0.5,delay:0.3}} className='font-bold font-quicksand text-2xl ml-5 sm:ml-12 mt-3 sm:mt-5'>Our Sponsers:</motion.p>
-        <marquee behavior="scroll" direction="left" loop='infinite' className='flex py-5'>
+        <marquee direction="left" className='flex py-5'>
         {
           list.map((item,id)=><img loading='lazy' key={id} className='h-20 mx-5 inline object-contain aspect-video' src={item} alt='brand'/>)
         }

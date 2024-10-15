@@ -1,4 +1,3 @@
-import React from 'react'
 import med from '../assets/med.jpeg'
 import line from '../assets/icons/line.png'
 import {motion} from 'framer-motion'

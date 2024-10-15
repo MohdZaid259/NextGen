@@ -1,4 +1,3 @@
-import React from 'react'
 import aelo from '../assets/aelo.jpeg'
 import ashwa from '../assets/ashwa.jpeg'
 import neem from '../assets/neem.jpg'

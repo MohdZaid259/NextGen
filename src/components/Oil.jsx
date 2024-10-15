@@ -1,78 +1,16 @@
-import React from 'react'
-import Avocado from '../assets/oils/Avocado.png' 
-import Cedarwood from '../assets/oils/Cedarwood.png' 
-import coconut from '../assets/oils/coconut.png' 
-import eucalyptus from '../assets/oils/eucalyptus.png' 
-import Frankincense from '../assets/oils/Frankincense.png' 
-import lavoil from '../assets/oils/lavoil.png' 
-import olive from '../assets/oils/olive.png' 
-import Peppermint from '../assets/oils/Peppermint.png' 
-import rosemary from '../assets/oils/rosemary.png' 
-import sunflower from '../assets/oils/sunflower.png' 
 import {motion} from 'framer-motion'
 import ProCard from './ProCard'
 import link from '../assets/icons/link.png'
 import { useNavigate } from 'react-router-dom'
+import {oil} from './ProductData.js'
 
-function Juice() {
+function Oil() {
   const navigate=useNavigate()
 
   const heading ={
     hidden:{opacity:0,scale:0},
     visible:{opacity:1,scale:1,transition:{delay:0.5, duration:0.5}}
   }
-  const oil = [
-    {
-      title:'Avocado oil',
-      image:Avocado,
-      price:'49.00'
-    },
-    {
-      title:'Cedarwood oil',
-      image:Cedarwood,
-      price:"19.00"
-    },
-    {
-      title:'Coconut oil',
-      image:coconut,
-      price:'19.00'
-    },
-    {
-      title:'Frankincense oil',
-      image:Frankincense,
-      price:'39.00'
-    },
-    {
-      title:'Eucalyptus oil',
-      image:eucalyptus,
-      price:'49.00'
-    },
-    {
-      title:'Lavoil oil',
-      image:lavoil,
-      price:"29.00"
-    },
-    {
-      title:'Olive oil',
-      image:olive,
-      price:'19.00'
-    },
-    {
-      title:'Peppermint oil',
-      image:Peppermint,
-      price:'39.00'
-    },
-    {
-      title:'Rosemary oil',
-      image:rosemary,
-      price:'29.00'
-    },
-    {
-      title:'Sunflower oil',
-      image:sunflower,
-      price:"21.00"
-    },
-  ]
 
   return (
     <>
@@ -87,4 +25,4 @@ function Juice() {
   )
 }
 
-export default Juice
+export default Oil

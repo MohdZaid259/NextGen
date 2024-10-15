@@ -1,4 +1,3 @@
-import React from "react";
 import trash from "../assets/icons/trash.png";
 import { useDispatch,useSelector } from "react-redux";
 import { removeFromCart } from "../Redux/cartSlice";

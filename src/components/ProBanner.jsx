@@ -1,4 +1,3 @@
-import React from 'react'
 import pro2 from '../assets/product/pro2.png'
 import video from '../assets/product/video.mp4'
 import {motion} from 'framer-motion'

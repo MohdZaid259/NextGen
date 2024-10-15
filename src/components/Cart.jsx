@@ -1,4 +1,3 @@
-import React from 'react'
 import missingCart from '../assets/missingCart.webp'
 import { useAuth0 } from "@auth0/auth0-react";
 import { useSelector } from 'react-redux';

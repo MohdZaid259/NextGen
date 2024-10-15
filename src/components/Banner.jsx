@@ -1,4 +1,3 @@
-import React from 'react'
 import banner1 from '../assets/product/banner1.png'
 import banner2 from '../assets/product/banner2.png'
 import banner3 from '../assets/product/banner3.png'

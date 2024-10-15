@@ -1,4 +1,3 @@
-import React from 'react'
 import about from '../assets/about/about.png'
 import about1 from '../assets/about/about1.png'
 import about2 from '../assets/about/about2.png'

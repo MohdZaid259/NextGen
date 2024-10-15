@@ -1,10 +1,13 @@
-import React from 'react'
+import { useDispatch } from 'react-redux';
+import { addToCart } from '../Redux/cartSlice';
 
 function ProCard({image,title,price,className=''}) {
+  const dispatch = useDispatch()
 
   function handleAddToCart(data){
     let existingCart = JSON.parse(localStorage.getItem('cartItems')) || [];
     existingCart.push(data);
+    dispatch(addToCart(existingCart))
     localStorage.setItem('cartItems', JSON.stringify(existingCart));
   }
   

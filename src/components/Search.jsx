@@ -1,4 +1,4 @@
-import React,{useCallback, useRef, useState} from 'react'
+import {useCallback, useRef, useState} from 'react'
 import SuggestList from './suggestion'
 import Input from './Input'
 import search from '../assets/icons/search.png'

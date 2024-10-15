@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { useAuth0 } from '@auth0/auth0-react';
 import { useSelector } from 'react-redux';
 import close from '../assets/icons/close.png'
@@ -27,8 +27,11 @@ function Profile() {
       ...prev,
       status: prev.status === 'Active' ? 'Inactive' : 'Active'
     }));
-  };
-  
+  }
+  function submitInfo(){
+    
+  }
+
   return (
     <div className='flex justify-center items-center'>
       <div className='bg-white relative text-sm mt-20 mx-5 sm:mx-0 mb-10 w-full sm:w-3/4 md:w-3/5 lg:w-2/5 p-5 font-nunito rounded shadow-md'>
@@ -36,7 +39,7 @@ function Profile() {
         <div className='flex flex-col my-3 gap-1'>
           <span className=' text-gray-600 font-semibold'>Display picture</span>
           <div className='flex mt-2'>
-            <img load className='w-12 rounded-md mx-5' src={userData.picture} alt="" />
+            <img className='w-12 rounded-md mx-5' src={userData.picture} alt="" />
             <div className='flex mx-auto justify-center items-center'>
             <button className='bg-emerald-500 mr-3 rounded-md active:bg-emerald-500 hover:bg-emerald-600 text-white px-2  py-1'>Change picture</button>
             <button className='text-red-500  hover:bg-red-500 hover:text-white active:bg-red-500 px-2 py-1 border rounded-md'>Delete picture</button>
@@ -60,7 +63,7 @@ function Profile() {
           <input className='px-2 py-1 border w-full rounded focus:border-emerald-500 outline-none' type="text" placeholder='A brief introduction of yourself...' onChange={handleChange} name='about' value={data.about}/>
         </div>
         <div className='flex mt-5 justify-end items-center gap-2'>
-        <button className='text-sm text-white bg-emerald-500 font-semibold hover:bg-emerald-600 active:bg-emerald-500 px-2 py-1 rounded-md' onClick={()=>submit}>Save Changes</button>
+        <button className='text-sm text-white bg-emerald-500 font-semibold hover:bg-emerald-600 active:bg-emerald-500 px-2 py-1 rounded-md' onClick={()=>submitInfo}>Save Changes</button>
         <button className=' text-white bg-red-500 font-semibold text-sm hover:bg-red-600 active:bg-red-500 px-2 py-1 rounded-md' onClick={()=>logout()}>Logout</button>
         </div>
       </div>

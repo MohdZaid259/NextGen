@@ -1,4 +1,4 @@
-import React,{useEffect,lazy,Suspense} from 'react'
+import {useEffect,lazy,Suspense} from 'react'
 const Navbar=lazy(()=>import('./components/Navbar'))
 const Footer=lazy(()=>import('./components/Footer'))
 const Helpdesk=lazy(()=>import('./components/Helpdesk'))

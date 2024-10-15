@@ -1,4 +1,3 @@
-import React from 'react'
 import logo1 from '../assets/logo1.png'
 import app from '../assets/pay/app.jpg'
 import play from '../assets/pay/play.jpg'
