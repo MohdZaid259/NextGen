@@ -5,14 +5,11 @@ function ProCard({image,title,price,className=''}) {
   const dispatch = useDispatch()
 
   function handleAddToCart(data){
-    let existingCart = JSON.parse(localStorage.getItem('cartItems')) || [];
-    existingCart.push(data);
-    dispatch(addToCart(existingCart))
-    localStorage.setItem('cartItems', JSON.stringify(existingCart));
+    dispatch(addToCart(data))
   }
-  
+
   return (
-    <div className={`${className} bg-gray-100 border w-fit flex flex-col items-center rounded-md shadow-xl p-3 pb-4`}>
+    <div className={`${className} bg-gray-100 border-2 w-fit flex flex-col items-center rounded-md shadow-xl p-3 pb-4`}>
       <img loading='lazy' className='h-52 hover:scale-110 duration-500 aspect-square rounded-md object-center object-cover' src={image} alt="" />
       <p className='text-lg py-1 font-semibold'>{title}</p>
       <p className='text-base'>{`$ ${price}`}</p>

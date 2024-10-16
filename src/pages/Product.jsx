@@ -1,4 +1,4 @@
-import React,{ lazy,Suspense } from 'react'
+import { lazy,Suspense } from 'react'
 const Soap=lazy(()=>import('../components/Soap'));
 const Juice=lazy(()=>import('../components/Juice'));
 const Oil=lazy(()=>import('../components/Oil'));

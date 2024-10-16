@@ -1,9 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const items=JSON.parse(localStorage.getItem('cartItems')) || [];
-
 const initialState={
-  cartItems:items,
+  cartItems:[],
   totalQuantity:0,
   totalPrice:0
 }
@@ -15,7 +13,7 @@ const cartSlice = createSlice({
     addToCart:(state,action)=>{
       const item=action.payload;
       const existingItem=state.cartItems.find((cartItem)=>cartItem.title==item.title);
- 
+
       if(existingItem){
         existingItem.quantity++;
       }else{

@@ -1,7 +1,8 @@
+import {forwardRef} from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAuth0 } from '@auth0/auth0-react'
 
-function LoginPopup({className}) {
+function LoginPopup({className},ref) {
   const navigate=useNavigate()
   const {loginWithRedirect}=useAuth0()
 
@@ -13,4 +14,4 @@ function LoginPopup({className}) {
   )
 }
 
-export default LoginPopup
+export default forwardRef(LoginPopup)

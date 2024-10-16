@@ -18,3 +18,4 @@ google integration
 matching fonts
 protected routes
 ai chatbot by dialogflow es
+appropiate use of hoc and hof

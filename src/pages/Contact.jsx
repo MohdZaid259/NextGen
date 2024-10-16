@@ -1,4 +1,4 @@
-import React,{ lazy,Suspense } from 'react'
+import { lazy,Suspense } from 'react'
 const Contact=lazy(()=>import('../components/Contact'));
 const Brands=lazy(()=>import('../components/Brands'));
 

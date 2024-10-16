@@ -32,6 +32,7 @@ function Navbar() {
   const {user, loginWithRedirect }=useAuth0()
 
   const userData=useSelector((state)=>state.auth.userData)
+  const {totalQuantity}=useSelector(state=>state.cart)
 
   useEffect(()=>{
     if(user){
@@ -54,7 +55,6 @@ function Navbar() {
   function handleHam(){
     setHam(!ham)
   }
-
   function toggle(){
     setPane(!pane)
   }
@@ -106,10 +106,13 @@ function Navbar() {
           <img className='w-5 md:w-[22px] cursor-pointer xl:hidden' src={search} alt="" />
           <div onClick={()=>{userData?navigate('/profile'):loginWithRedirect()}} className={`${user?'':'hover:bg-pink-500 hover:invert p-[6px] cursor-pointer active:bg-pink-600 rounded-md '} flex justify-center items-center gap-2`}>
             {user?.picture?<img className='w-8 cursor-pointer rounded-full' src={user.picture}/>:<img className='cursor-pointer w-5 md:w-6' src={profile}/>}
-            {user?'':<span className='text-base md:text-lg font-quicksand font-semibold '>Login</span>}
+            {user?'':<span className='text-base hidden md:block md:text-lg font-quicksand font-semibold '>Login</span>}
           </div>
           {visible && <AnimatePop initial={{scale:0}} animate={{scale:1}} className={`animate-bounce duration-100 absolute top-16 right-0 md:right-[95px] drop-shadow-md`}/>}
-          <img onClick={()=>setPane(true)} className='cart cursor-pointer hidden md:block w-[26px]' src={cart} alt="cart" />
+          <div className='relative'>
+            <img onClick={()=>setPane(true)} className='cart cursor-pointer block w-[26px]' src={cart} alt="cart" />
+            {totalQuantity>0 && <div className='absolute top-0 -right-2 w-4 h-4 rounded-full bg-red-500 p-1 text-white text-xs flex justify-center items-center'>{totalQuantity}</div>}
+          </div>
         </div>
       {pane && <div ref={cartRef} className={`absolute right-0 top-0 z-50 w-[30%] h-screen shadow-[-3px_0_10px_0px_rgba(0,0,0,0.3)] bg-slate-100 transition-all duration-500 ease-linear ${pane?'translate-x-0':'translate-x-full'}`}><Cart toggle={toggle}/></div>}
       </div>

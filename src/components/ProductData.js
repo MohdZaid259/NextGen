@@ -31,156 +31,156 @@ import s6 from '../assets/soap/s6.jpeg'
 
 const juice = [
   {
-    title:'Aloe Vera juice',
+    title:'Aloe Vera Juice',
     image:aelojuice,
     price:'49.00'
   },
   {
-    title:'Ginger Turmeric juice',
+    title:'Ginger Turmeric Juice',
     image:ginger,
     price:"19.00"
   },
   {
-    title:'Mint Lemon juice',
+    title:'Mint Lemon Juice',
     image:mint,
     price:'19.00'
   },
   {
-    title:'Holy Basil juice',
+    title:'Holy Basil Juice',
     image:basil,
     price:'39.00'
   },
   {
-    title:'Cabbage juice',
+    title:'Cabbage Juice',
     image:j1,
     price:'49.00'
   },
   {
-    title:'Anonymous juice',
+    title:'Anonymous Juice',
     image:j2,
     price:"29.00"
   },
   {
-    title:'Bitter groud juice',
+    title:'Bitter groud Juice',
     image:j3,
     price:'19.00'
   },
   {
-    title:'Turnip juice',
+    title:'Turnip Juice',
     image:j4,
     price:'39.00'
   },
   {
-    title:'Orange juice',
+    title:'Orange Juice',
     image:j5,
     price:'29.00'
   },
   {
-    title:'Bitter groud juice',
+    title:'Bitter groud Juice',
     image:j6,
     price:"21.00"
   },
 ]
 const oil = [
   {
-    title:'Avocado oil',
+    title:'Avocado Oil',
     image:Avocado,
     price:'49.00'
   },
   {
-    title:'Cedarwood oil',
+    title:'Cedarwood Oil',
     image:Cedarwood,
     price:"19.00"
   },
   {
-    title:'Coconut oil',
+    title:'Coconut Oil',
     image:coconut,
     price:'19.00'
   },
   {
-    title:'Frankincense oil',
+    title:'Frankincense Oil',
     image:Frankincense,
     price:'39.00'
   },
   {
-    title:'Eucalyptus oil',
+    title:'Eucalyptus Oil',
     image:eucalyptus,
     price:'49.00'
   },
   {
-    title:'Lavoil oil',
+    title:'Lavoil Oil',
     image:lavoil,
     price:"29.00"
   },
   {
-    title:'Olive oil',
+    title:'Olive Oil',
     image:olive,
     price:'19.00'
   },
   {
-    title:'Peppermint oil',
+    title:'Peppermint Oil',
     image:Peppermint,
     price:'39.00'
   },
   {
-    title:'Rosemary oil',
+    title:'Rosemary Oil',
     image:rosemary,
     price:'29.00'
   },
   {
-    title:'Sunflower oil',
+    title:'Sunflower Oil',
     image:sunflower,
     price:"21.00"
   },
 ]
 const soap = [
   {
-    title:'Lavender soap',
+    title:'Lavender Soap',
     image:lav,
     price:'24.00'
   },
   {
-    title:'Shea Butter soap',
+    title:'Shea Butter Soap',
     image:shea,
     price:'21.00'
   },
   {
-    title:'Khadi Natural soap',
+    title:'Khadi Natural Soap',
     image:khadi,
     price:'21.00'
   }, 
   {
-    title:'Pink Clay soap',
+    title:'Pink Clay Soap',
     image:clay,
     price:'19.00'
   },
   {
-    title:'Lavender soap',
+    title:'Lavender Soap',
     image:s1,
     price:'34.00'
   },
   {
-    title:'Shea Butter soap',
+    title:'Shea Butter Soap',
     image:s2,
     price:'29.00'
   },
   {
-    title:'Khadi Natural soap',
+    title:'Khadi Natural Soap',
     image:s3,
     price:'19.00'
   }, 
   {
-    title:'Pink Clay soap',
+    title:'Pink Clay Soap',
     image:s4,
     price:'19.00'
   },
   {
-    title:'Lavender soap',
+    title:'Lavender Soap',
     image:s5,
     price:'19.00'
   },
   {
-    title:'Shea Butter soap',
+    title:'Shea Butter Soap',
     image:s6,
     price:'19.00'
   },
