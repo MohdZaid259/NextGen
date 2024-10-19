@@ -11,6 +11,7 @@ function Cart({toggle}) {
   const {loginWithRedirect}=useAuth0()
   const userData=useSelector(state=>state.auth.userData)
   const {totalPrice,totalQuantity}=useSelector(state=>state.cart)
+  const cartItem=useSelector(state=>state.cart.cartItems)
 
   return (
     <div className='font-nunito'>
@@ -19,10 +20,10 @@ function Cart({toggle}) {
         <img onClick={toggle} className='h-12 cursor-pointer p-4 opacity-60 hover:opacity-100' src={close} alt="" />
       </div>
       <hr className='mx-5 mb-2 border border-gray-300'/>
-        <ProInCart/>
+          {cartItem.length>0?<ProInCart/>:<img loading='lazy' className='w-full' src={missingCart} alt="cart" />}
       <hr className='mx-5 my-2 border border-gray-300'/>
       <span className='text-lg mx-5 text-gray-800 tracking-widerd'>Recommended Products</span>
-      <div className='fixed w-full px-5 py-3 bottom-0 shadow-[0_0_10px_0px_rgba(0,0,0,0.3)]'>
+      <div className='fixed w-full z-50 px-5 py-3 bottom-0 shadow-[0_0_10px_0px_rgba(0,0,0,0.3)]'>
         <div className='flex justify-between px-2 py-1'>
           <div className='flex gap-2 cursor-pointer items-center'>
             <img className='h-4 opacity-80' src={tag} alt="" />
@@ -36,7 +37,7 @@ function Cart({toggle}) {
             <span className='text-gray-700 text-xs tracking-widest'>SUBTOTAL</span>
             <img className='h-4 opacity-50 cursor-pointer' src={question} alt="" />
           </div>
-          <span>{totalPrice}</span>
+          <span>$ {totalPrice.toFixed(2)}</span>
         </div>
         <div className='flex px-2 gap-2'>
           <input className='p-1 border outline-none border-black rounded-sm w-full text-sm' type="text" placeholder='Discount code or gift card'/>

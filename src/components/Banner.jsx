@@ -11,7 +11,7 @@ function Banner() {
   const navigate=useNavigate()
 
   return (
-    <motion.div initial={{opacity:0,y:-100}} whileInView={{opacity:1,y:0}} transition={{duration:0.5}} className='mt-[60px]'>
+    <motion.div initial={{opacity:0,y:-100}} whileInView={{opacity:1,y:0}} transition={{duration:0.5}} className='mt-[62px]'>
     <Swiper
       spaceBetween={0}
       slidesPerView={1}

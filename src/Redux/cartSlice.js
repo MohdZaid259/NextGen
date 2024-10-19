@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { ImConnection } from "react-icons/im";
 
 const initialState={
   cartItems:[],
@@ -20,7 +21,7 @@ const cartSlice = createSlice({
         state.cartItems.push({...item,quantity:1});
       }
       state.totalQuantity++;
-      state.totalPrice+=item.price;
+      state.totalPrice+=Number(item.price);
     },
     removeFromCart:(state,action)=>{
       const item=action.payload;
@@ -28,17 +29,24 @@ const cartSlice = createSlice({
 
       if(existingItem){
         state.totalQuantity-=existingItem.quantity;
-        state.totalPrice-=existingItem.price;
+        state.totalPrice-=Number(existingItem.price);
         state.cartItems=state.cartItems.filter((cartItem)=>cartItem.title!=item.title)
       }
     },
-    clearCart:(state,action)=>{
-      state.cartItems=[],
-      state.totalQuantity=0,
-      state.totalPrice=0
+    increment:(state,action)=>{
+      const item = state.cartItems.find(item => item === action.payload);
+      if(item){
+        item.quantity += 1;
+      }                                                                //cartItems looks like this:[{...},{...},{...}]
+    },
+    decrement:(state,action)=>{
+      const item = state.cartItems.find(item => item === action.payload);
+      if (item) {
+        item.quantity -= 1;
+      }
     }
   }
 })
 
-export const {addToCart,removeFromCart,clearCart} = cartSlice.actions
+export const {addToCart,removeFromCart,increment,decrement} = cartSlice.actions
 export default cartSlice.reducer

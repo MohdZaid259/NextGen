@@ -37,7 +37,7 @@ function About() {
 
   return (
     <div>
-      <motion.img loading='eager' initial={{opacity:0,y:-100}} whileInView={{opacity:1,y:0}} transition={{duration:0.5}} className='mt-[58px] ' src={about} alt="" />
+      <motion.img loading='eager' initial={{opacity:0,y:-100}} whileInView={{opacity:1,y:0}} transition={{duration:0.5}} className='mt-[60px] ' src={about} alt="" />
       <Counter/>
       {list.map((item,id)=>{
         return ( 
