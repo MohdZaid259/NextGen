@@ -6,11 +6,20 @@ import { Outlet } from 'react-router-dom'
 import { useAuth0 } from '@auth0/auth0-react'
 import { useDispatch } from 'react-redux'
 import {login,logout} from './Redux/authSlice'
+import {addToCart} from './Redux/cartSlice'
+import useLocalStorage from './hooks/useLocalStorage'
 
 function App() {
   const {user,isAuthenticated,isLoading}=useAuth0()
   const dispatch=useDispatch()
+  const {getData} =useLocalStorage('localCart')
+  let itemList=getData()
 
+  useEffect(()=>{
+    if(itemList){
+      itemList.map((item)=>dispatch(addToCart(item)))
+    }
+  },[])
   useEffect(()=>{
     if(!isLoading && isAuthenticated && user){
       dispatch(login(user))

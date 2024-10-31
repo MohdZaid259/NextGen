@@ -9,12 +9,15 @@ import ProInCart from './ProInCart';
 
 function Cart({toggle}) {
   const {loginWithRedirect}=useAuth0()
-  const userData=useSelector(state=>state.auth.userData)
-  const {totalPrice,totalQuantity}=useSelector(state=>state.cart)
+  // const userData=useSelector(state=>state.auth.userData)
+  const userData=true
+  const {totalPrice}=useSelector(state=>state.cart)
   const cartItem=useSelector(state=>state.cart.cartItems)
 
   return (
-    <div className='font-nunito'>
+    <>
+    {userData?<>
+      <div className='font-nunito'>
       <div className='flex px-5 justify-between items-center p-3 pb-0'>
         <span className='text-2xl tracking-wider text-gray-700'>Cart</span>
         <img onClick={toggle} className='h-12 cursor-pointer p-4 opacity-60 hover:opacity-100' src={close} alt="" />
@@ -44,21 +47,20 @@ function Cart({toggle}) {
           <button className='text-white bg-emerald-700 hover:bg-emerald-800 p-2 text-sm rounded-sm '>Apply</button>
         </div>
         <button className='bg-emerald-500 my-2 w-full hover:bg-emerald-600 py-[6px] rounded-tl-2xl rounded-br-2xl text-white'>CHECK OUT</button>
+      </div>  
       </div>
-    {/* {userData?<>
-    welcome {userData.email}
     </>:<>
-      <div className='p-10 flex justify-center items-center'>
-      <div className='rounded-md bg-white drop-shadow-lg w-1/2 mt-10 flex flex-col m-auto p-10 pb-7'>
-        <img loading='lazy' className='w-56 m-auto mb-5' src={missingCart} alt="" />
-        <span className='text-lg text-center'>Missing Cart items?</span>
-        <span className='text-md text-center'>Login to see the items you added previously</span>
-        <button className='bg-emerald-500 m-auto active:bg-emerald-500 hover:bg-emerald-600 text-white font-nunito text-lg font-semibold py-1 w-32 rounded-sm mt-3' onClick={()=>loginWithRedirect()}>Login</button>
+      <div className='p-10 h-full flex justify-center items-center'>
+      <img onClick={toggle} className='h-12 cursor-pointer absolute right-5 top-5 p-4 opacity-50 hover:opacity-100' src={close} alt="" />
+        <div className='rounded-md bg-white drop-shadow-lg flex flex-col p-10 pb-7'>
+          <img loading='lazy' className='w-56 m-auto mb-5' src={missingCart} alt="" />
+          <span className='text-lg text-center'>Missing Cart items?</span>
+          <span className='text-md text-center'>Login to see the items you added previously</span>
+          <button className='bg-emerald-500 m-auto active:bg-emerald-500 hover:bg-emerald-600 text-white font-nunito text-lg font-semibold py-1 w-32 rounded-sm mt-3' onClick={()=>loginWithRedirect()}>Login</button>
+        </div>
       </div>
-    </div>
-    </>} */}
-    
-    </div>
+    </>}
+    </>
   )
 }
 

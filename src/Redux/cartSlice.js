@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { ImConnection } from "react-icons/im";
 
 const initialState={
   cartItems:[],
@@ -34,15 +33,21 @@ const cartSlice = createSlice({
       }
     },
     increment:(state,action)=>{
-      const item = state.cartItems.find(item => item === action.payload);
-      if(item){
-        item.quantity += 1;
-      }                                                                //cartItems looks like this:[{...},{...},{...}]
+      let item=state.cartItems.find((cartItem)=>cartItem.title==action.payload.title);
+      item.quantity+=1;
+      state.totalQuantity+=1;
+      state.totalPrice+=Number(item.price);
     },
     decrement:(state,action)=>{
-      const item = state.cartItems.find(item => item === action.payload);
-      if (item) {
-        item.quantity -= 1;
+      let item=state.cartItems.find((cartItem)=>cartItem.title==action.payload.title);
+      if(action.payload.quantity>1){
+        item.quantity-=1;
+        state.totalQuantity-=1;
+        state.totalPrice-=Number(item.price);
+      }else{
+        state.totalQuantity-=1;
+        state.totalPrice-=Number(item.price);
+        state.cartItems=state.cartItems.filter((cartItem)=>cartItem.title!=action.payload.title)
       }
     }
   }

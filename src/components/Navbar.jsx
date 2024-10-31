@@ -13,6 +13,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { useSelector } from 'react-redux'
 import search from '../assets/icons/search.png'
 import Cart from './Cart'
+import SearchPane from './SearchPane'
 
 let list=[
   {name:'Home',path:''},
@@ -24,11 +25,12 @@ let list=[
 function Navbar() {
   const [ham,setHam]=useState(false)
   const [visible,setVisible]=useState(false)
+  const [searchPane,setSearchPane]=useState(false)
+  const [pane,setPane]=useState(false)
   const navigate=useNavigate()
   const menuRef = useRef(null);
   const cartRef = useRef(null);
   const AnimatePop=motion(LoginPopup)
-  const [pane,setPane]=useState(false)
   const {user, loginWithRedirect }=useAuth0()
 
   const userData=useSelector((state)=>state.auth.userData)
@@ -58,7 +60,10 @@ function Navbar() {
   function toggle(){
     setPane(!pane)
   }
-
+  function handleSearchPane(){
+    console.log('change')
+    setSearchPane(!searchPane)
+  }
   if(pane){
     document.body.style.overflow='hidden'
   }else{
@@ -103,7 +108,8 @@ function Navbar() {
           <div className='hidden xl:block'>
             <Search/>
           </div>
-          <img className='w-5 md:w-[22px] cursor-pointer xl:hidden' src={search} alt="" />
+          {searchPane && <div className='absolute z-99 w-full h-1/3 bg-red-500'><SearchPane/></div>}
+          <img onClick={handleSearchPane} className='w-5 md:w-[22px] cursor-pointer xl:hidden' src={search} alt="" />
           <div onClick={()=>{userData?navigate('/profile'):loginWithRedirect()}} className={`${user?'':'hover:bg-pink-500 hover:invert p-[6px] cursor-pointer active:bg-pink-600 rounded-md '} flex justify-center items-center gap-2`}>
             {user?.picture?<img className='w-8 cursor-pointer rounded-full' src={user.picture}/>:<img className='cursor-pointer w-5 md:w-6' src={profile}/>}
             {user?'':<span className='text-base hidden md:block md:text-lg font-quicksand font-semibold '>Login</span>}

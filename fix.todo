@@ -1,3 +1,9 @@
 add throttle
 if auth=true show profile (protected route)
 isloading -> useSelector
+use promises in-
+  Fetching Product Data from Backend
+  Adding Items to Cart
+  Handling Orders
+custom hook for local storage
+use callback/memo in totalPrice/addtocart

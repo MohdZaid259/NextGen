@@ -6,7 +6,6 @@ import ProductPage from './pages/Product.jsx'
 import ContactPage from './pages/Contact.jsx'
 import Cart from './components/Cart.jsx'
 import Profile from './components/Profile.jsx'
-import SignUp from './components/SignUp.jsx'
 import './index.css'
 import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } from 'react-router-dom'
 import { Auth0Provider } from '@auth0/auth0-react';
@@ -21,7 +20,6 @@ const router=createBrowserRouter(
       <Route path='' element={<Home/>}/>
       <Route path='cart' element={<Cart/>}/>
       <Route path='profile' element={<Profile/>}/>
-      <Route path='signup' element={<SignUp/>}/>
       <Route path='about' element={<AboutPage/>}/>
       <Route path='product' element={<ProductPage/>}/>
       <Route path='contact' element={<ContactPage/>}/>

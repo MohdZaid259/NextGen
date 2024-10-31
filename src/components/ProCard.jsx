@@ -1,11 +1,14 @@
 import { useDispatch } from 'react-redux';
 import { addToCart } from '../Redux/cartSlice';
+import useLocalStorage from '../hooks/useLocalStorage';
 
 function ProCard({image,title,price,className=''}) {
   const dispatch = useDispatch()
+  const {setData} = useLocalStorage('localCart')
 
   function handleAddToCart(data){
     dispatch(addToCart(data))
+    setData(data)
   }
 
   return (
