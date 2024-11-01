@@ -12,6 +12,7 @@ import { Auth0Provider } from '@auth0/auth0-react';
 import { Provider } from 'react-redux'
 import store from './Redux/store.js'
 import Herby from './components/Herby.jsx'
+import {FirebaseProvider} from './context/Firebase.jsx'
 
 const router=createBrowserRouter(
   createRoutesFromElements(
@@ -38,7 +39,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     }}
   >
     <Provider store={store}>
-      <RouterProvider router={router}/>
+      <FirebaseProvider>
+        <RouterProvider router={router}/>
+      </FirebaseProvider>
     </Provider>
   </Auth0Provider>
 )
