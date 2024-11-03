@@ -1,5 +1,4 @@
 import missingCart from '../assets/missingCart.webp'
-import { useAuth0 } from "@auth0/auth0-react";
 import { useSelector } from 'react-redux';
 import close from '../assets/icons/close.png'
 import question from '../assets/icons/question.png'
@@ -8,11 +7,14 @@ import right from '../assets/icons/right.png'
 import ProInCart from './ProInCart';
 
 function Cart({toggle}) {
-  const {loginWithRedirect}=useAuth0()
   // const userData=useSelector(state=>state.auth.userData)
   const userData=true
   const {totalPrice}=useSelector(state=>state.cart)
   const cartItem=useSelector(state=>state.cart.cartItems)
+
+  function handleLogin(){
+    
+  }
 
   return (
     <>
@@ -56,7 +58,7 @@ function Cart({toggle}) {
           <img loading='lazy' className='w-56 m-auto mb-5' src={missingCart} alt="" />
           <span className='text-lg text-center'>Missing Cart items?</span>
           <span className='text-md text-center'>Login to see the items you added previously</span>
-          <button className='bg-emerald-500 m-auto active:bg-emerald-500 hover:bg-emerald-600 text-white font-nunito text-lg font-semibold py-1 w-32 rounded-sm mt-3' onClick={()=>loginWithRedirect()}>Login</button>
+          <button className='bg-emerald-500 m-auto active:bg-emerald-500 hover:bg-emerald-600 text-white font-nunito text-lg font-semibold py-1 w-32 rounded-sm mt-3' onClick={()=>handleLogin()}>Login</button>
         </div>
       </div>
     </>}

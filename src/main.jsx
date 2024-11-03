@@ -8,11 +8,12 @@ import Cart from './components/Cart.jsx'
 import Profile from './components/Profile.jsx'
 import './index.css'
 import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } from 'react-router-dom'
-import { Auth0Provider } from '@auth0/auth0-react';
 import { Provider } from 'react-redux'
 import store from './Redux/store.js'
 import Herby from './components/Herby.jsx'
 import {FirebaseProvider} from './context/Firebase.jsx'
+import SignUp from './components/Signup.jsx'
+import Login from './components/Login.jsx'
 
 const router=createBrowserRouter(
   createRoutesFromElements(
@@ -24,6 +25,8 @@ const router=createBrowserRouter(
       <Route path='about' element={<AboutPage/>}/>
       <Route path='product' element={<ProductPage/>}/>
       <Route path='contact' element={<ContactPage/>}/>
+      <Route path='login' element={<Login/>}/>
+      <Route path='signup' element={<SignUp/>}/>
     </Route>
     <Route path='/herby' element={<Herby/>}/>
     </>
@@ -31,17 +34,9 @@ const router=createBrowserRouter(
 )
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <Auth0Provider
-    domain="dev-atvz1zj76jo2minq.us.auth0.com"
-    clientId="WeCAZo2lZplhY8BA4AL56dQzop7NWeXN"
-    authorizationParams={{
-      redirect_uri: window.location.origin
-    }}
-  >
     <Provider store={store}>
       <FirebaseProvider>
         <RouterProvider router={router}/>
       </FirebaseProvider>
     </Provider>
-  </Auth0Provider>
 )

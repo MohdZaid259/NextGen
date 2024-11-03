@@ -1,12 +1,13 @@
 import { useState } from 'react'
-import { useAuth0 } from '@auth0/auth0-react';
 import { useSelector } from 'react-redux';
 import close from '../assets/icons/close.png'
 import { useNavigate } from 'react-router-dom';
+import { useContext } from 'react';
+import { FirebaseContext } from '../context/Firebase';
 
 function Profile() {
   const userData=useSelector(state=>state.auth.userData)
-  const {logout}=useAuth0()
+  const {signOut} = useContext(FirebaseContext)
   const [data,setData]=useState({
     name:userData.name || '',
     username:userData.nickname || '',
@@ -31,7 +32,11 @@ function Profile() {
   function submitInfo(){
     
   }
-
+  function handleLogout(){
+    signOut()
+    .then(res=>console.log(res))
+    .catch((err)=>console.log('signout err: ',err))
+  }
   return (
     <div className='flex justify-center items-center'>
       <div className='bg-white relative text-sm mt-20 mx-5 sm:mx-0 mb-10 w-full sm:w-3/4 md:w-3/5 lg:w-2/5 p-5 font-nunito rounded shadow-md'>
@@ -64,7 +69,7 @@ function Profile() {
         </div>
         <div className='flex mt-5 justify-end items-center gap-2'>
         <button className='text-sm text-white bg-emerald-500 font-semibold hover:bg-emerald-600 active:bg-emerald-500 px-2 py-1 rounded-md' onClick={()=>submitInfo}>Save Changes</button>
-        <button className=' text-white bg-red-500 font-semibold text-sm hover:bg-red-600 active:bg-red-500 px-2 py-1 rounded-md' onClick={()=>logout()}>Logout</button>
+        <button className=' text-white bg-red-500 font-semibold text-sm hover:bg-red-600 active:bg-red-500 px-2 py-1 rounded-md' onClick={()=>handleLogout()}>Logout</button>
         </div>
       </div>
     </div>

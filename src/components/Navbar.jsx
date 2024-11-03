@@ -9,7 +9,6 @@ import { useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import LoginPopup from './LoginPopup'
 import Search from './Search'
-import { useAuth0 } from "@auth0/auth0-react";
 import { useSelector } from 'react-redux'
 import search from '../assets/icons/search.png'
 import Cart from './Cart'
@@ -31,28 +30,27 @@ function Navbar() {
   const menuRef = useRef(null);
   const cartRef = useRef(null);
   const AnimatePop=motion(LoginPopup)
-  const {user, loginWithRedirect }=useAuth0()
 
   const userData=useSelector((state)=>state.auth.userData)
   const {totalQuantity}=useSelector(state=>state.cart)
 
-  useEffect(()=>{
-    if(user){
-      setVisible(false)
-    }else{
-      let showPop=setTimeout(() => {
-        setVisible(true)
-      }, 1500);
-      let hidePop=setTimeout(() => {
-        setVisible(false)
-      }, 7000);
+  // useEffect(()=>{
+  //   if(user){
+  //     setVisible(false)
+  //   }else{
+  //     let showPop=setTimeout(() => {
+  //       setVisible(true)
+  //     }, 1500);
+  //     let hidePop=setTimeout(() => {
+  //       setVisible(false)
+  //     }, 7000);
   
-      return ()=>{
-        clearTimeout(showPop)
-        clearTimeout(hidePop)
-      }
-    }
-  },[user])
+  //     return ()=>{
+  //       clearTimeout(showPop)
+  //       clearTimeout(hidePop)
+  //     }
+  //   }
+  // },[user])
 
   function handleHam(){
     setHam(!ham)
@@ -84,7 +82,7 @@ function Navbar() {
       document.removeEventListener('click',exit)
     }
   },[setHam])
-  
+  let user=false;
   return (
     <>
       <div className='fixed top-0 z-20 w-full flex text-black justify-around items-center backdrop-blur-sm py-3 md:p-3 shadow-lg'>
@@ -110,9 +108,9 @@ function Navbar() {
           </div>
           {searchPane && <div className='absolute z-99 w-full h-1/3 bg-red-500'><SearchPane/></div>}
           <img onClick={handleSearchPane} className='w-5 md:w-[22px] cursor-pointer xl:hidden' src={search} alt="" />
-          <div onClick={()=>{userData?navigate('/profile'):loginWithRedirect()}} className={`${user?'':'hover:bg-pink-500 hover:invert p-[6px] cursor-pointer active:bg-pink-600 rounded-md '} flex justify-center items-center gap-2`}>
+          <div onClick={()=>{userData?navigate('/profile'):navigate('/signup')}} className={`${user?'':'hover:bg-pink-500 hover:invert p-[6px] cursor-pointer active:bg-pink-600 rounded-md '} flex justify-center items-center gap-2`}>
             {user?.picture?<img className='w-8 cursor-pointer rounded-full' src={user.picture}/>:<img className='cursor-pointer w-5 md:w-6' src={profile}/>}
-            {user?'':<span className='text-base hidden md:block md:text-lg font-quicksand font-semibold '>Login</span>}
+            {user?'':<span className='text-base hidden md:block md:text-lg font-quicksand font-semibold '>SignUp</span>}
           </div>
           {visible && <AnimatePop initial={{scale:0}} animate={{scale:1}} className={`animate-bounce duration-100 absolute top-16 right-0 md:right-[95px] drop-shadow-md`}/>}
           <div className='relative'>

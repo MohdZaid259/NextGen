@@ -3,14 +3,12 @@ const Navbar=lazy(()=>import('./components/Navbar'))
 const Footer=lazy(()=>import('./components/Footer'))
 const Helpdesk=lazy(()=>import('./components/Helpdesk'))
 import { Outlet } from 'react-router-dom'
-import { useAuth0 } from '@auth0/auth0-react'
 import { useDispatch } from 'react-redux'
 import {login,logout} from './Redux/authSlice'
 import {addToCart} from './Redux/cartSlice'
 import useLocalStorage from './hooks/useLocalStorage'
 
 function App() {
-  const {user,isAuthenticated,isLoading}=useAuth0()
   const dispatch=useDispatch()
   const {getData} =useLocalStorage('localCart')
   let itemList=getData()
@@ -20,15 +18,15 @@ function App() {
       itemList.map((item)=>dispatch(addToCart(item)))
     }
   },[])
-  useEffect(()=>{
-    if(!isLoading && isAuthenticated && user){
-      dispatch(login(user))
-    }else{
-      dispatch(logout())
-    }
-  },[isLoading,isAuthenticated,user])
+  // useEffect(()=>{
+  //   if(!isLoading && isAuthenticated && user){
+  //     dispatch(login(user))
+  //   }else{
+  //     dispatch(logout())
+  //   }
+  // },[isLoading,isAuthenticated,user])
 
-  if(isLoading) return <p>Loading...</p>
+  // if(isLoading) return <p>Loading...</p>
   return (
     <Suspense fallback=''>
       <Navbar/>
