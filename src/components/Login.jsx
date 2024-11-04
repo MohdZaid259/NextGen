@@ -12,7 +12,7 @@ function Login() {
   function handleLogin({email,password}){
     logIn(email,password)
       .then((res)=>{
-        console.log(res)
+        console.log(res.user)
       }).catch((err)=>{
         console.log('Error in logIn: ',err)
       })

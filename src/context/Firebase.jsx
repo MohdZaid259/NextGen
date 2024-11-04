@@ -14,24 +14,24 @@ const database = getDatabase(FirebaseApp) // connecting with db
 const FirebaseContext = createContext(null); // creating context
 
 function signUp(email,password){
-  createUserWithEmailAndPassword(auth,email,password)
+  return createUserWithEmailAndPassword(auth,email,password)
 }
 function signUpGoogle(){
-  signInWithPopup(auth,GProvider)
+  return signInWithPopup(auth,GProvider)
 }
 function logIn(email,password){
-  signInWithEmailAndPassword(auth, email, password)
+  return signInWithEmailAndPassword(auth, email, password)
 }
 function signOutUser(){
-  signOut(auth)
+  return signOut(auth)
 }
 function putData(key,data){
-  set(ref(database,key),data)
+  return set(ref(database,key),data)
 }
 
 const FirebaseProvider = (props) => { 
   return (
-    <FirebaseContext.Provider value={{putData,signUp,signUpGoogle,logIn,signOutUser}}>
+    <FirebaseContext.Provider value={{auth,putData,signUp,signUpGoogle,logIn,signOutUser}}>
       {props.children}
     </FirebaseContext.Provider>
   )

@@ -6,7 +6,7 @@ import { useContext } from 'react';
 import { FirebaseContext } from '../context/Firebase';
 
 function Profile() {
-  const userData=useSelector(state=>state.auth.userData)
+  // const userData=useSelector(state=>state.auth.userData)
   const {signOut} = useContext(FirebaseContext)
   const [data,setData]=useState({
     name:userData.name || '',
@@ -17,11 +17,11 @@ function Profile() {
   const navigate=useNavigate()
 
   function handleChange(e){
-    const {name,value}=e.target
-    setData((prev)=>({
-      ...prev,
-      [name]:value
-    }))
+    // const {name,value}=e.target
+    // setData((prev)=>({
+    //   ...prev,
+    //   [name]:value
+    // }))
   }
   function toggleStatus(){
     setData((prev) => ({
