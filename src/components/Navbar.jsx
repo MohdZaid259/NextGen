@@ -120,7 +120,7 @@ function Navbar() {
             {totalQuantity>0 && <div className='absolute top-0 -right-2 w-4 h-4 rounded-full bg-red-500 p-1 text-white text-xs flex justify-center items-center'>{totalQuantity}</div>}
           </div>
         </div>
-      {pane && <div ref={cartRef} className={`absolute right-0 top-0 z-50 w-[30%] h-screen shadow-[-3px_0_10px_0px_rgba(0,0,0,0.3)] bg-slate-100 transition-all duration-500 ease-linear ${pane?'translate-x-0':'translate-x-full'}`}><Cart toggle={toggle}/></div>}
+      {pane && <div ref={cartRef} className={`absolute right-0 top-0 z-50 min-[300px]:w-[80%] sm:w-[50%] md:w-[40%] lg:w-[30%] h-screen shadow-[-3px_0_10px_0px_rgba(0,0,0,0.3)] bg-slate-100 transition-all duration-500 ease-linear ${pane?'translate-x-0':'translate-x-full'}`}><Cart toggle={toggle}/></div>}
       </div>
     </>
   )

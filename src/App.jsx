@@ -24,7 +24,6 @@ function App() {
       itemList.map((item)=>dispatch(addToCart(item)))
     }
   },[])
-console.log(userData)
 
   useEffect(()=>{
       if(!loading && auth){

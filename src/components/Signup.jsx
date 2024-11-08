@@ -2,21 +2,27 @@ import google from '../assets/icons/google.png'
 import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import { useContext } from 'react'
+import {login} from '../Redux/authSlice'
 import { FirebaseContext } from '../context/Firebase'
+import { useDispatch } from 'react-redux'
 
 function SignUp() {
   const {register,handleSubmit} = useForm()
   const {signUp,signUpGoogle} = useContext(FirebaseContext)
   const navigate=useNavigate()
+  const dispatch = useDispatch()
 
   function handleGSignUp(){
     signUpGoogle()
-      .then((res)=>console.log(res))
+      .then((res)=>{
+        dispatch(login(res?.currentUser?.providerData[0]))
+      })
       .catch((err)=>console.log(err))
   }
   function handleSignup({email,password}){
     signUp(email,password)
       .then((res)=>{
+        dispatch(login(res?.currentUser?.providerData[0]))
         console.log(res)
       }).catch((err)=>{
         console.log('Error in signUp: ',err)

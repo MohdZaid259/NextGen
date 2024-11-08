@@ -6,22 +6,23 @@ import { useContext } from 'react';
 import { FirebaseContext } from '../context/Firebase';
 
 function Profile() {
-  // const userData=useSelector(state=>state.auth.userData)
-  const {signOut} = useContext(FirebaseContext)
+  const userData=useSelector(state=>state.auth.userData)
+  console.log(userData)
+  const {signOutUser} = useContext(FirebaseContext)
   const [data,setData]=useState({
-    name:userData.name || '',
-    username:userData.nickname || '',
+    name: 'ad',
+    username:'da',
     status:'Active',
     about:''
   })
   const navigate=useNavigate()
 
   function handleChange(e){
-    // const {name,value}=e.target
-    // setData((prev)=>({
-    //   ...prev,
-    //   [name]:value
-    // }))
+    const {name,value}=e.target
+    setData((prev)=>({
+      ...prev,
+      [name]:value
+    }))
   }
   function toggleStatus(){
     setData((prev) => ({
@@ -33,7 +34,7 @@ function Profile() {
     
   }
   function handleLogout(){
-    signOut()
+    signOutUser()
     .then(res=>console.log(res))
     .catch((err)=>console.log('signout err: ',err))
   }
@@ -44,7 +45,7 @@ function Profile() {
         <div className='flex flex-col my-3 gap-1'>
           <span className=' text-gray-600 font-semibold'>Display picture</span>
           <div className='flex mt-2'>
-            <img className='w-12 rounded-md mx-5' src={userData.picture} alt="" />
+            <img className='w-12 rounded-md mx-5' src={'picture'} alt="" />
             <div className='flex mx-auto justify-center items-center'>
             <button className='bg-emerald-500 mr-3 rounded-md active:bg-emerald-500 hover:bg-emerald-600 text-white px-2  py-1'>Change picture</button>
             <button className='text-red-500  hover:bg-red-500 hover:text-white active:bg-red-500 px-2 py-1 border rounded-md'>Delete picture</button>

@@ -2,16 +2,21 @@ import { useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 // import mark from '../assets/icons/mark.png'
 import { useContext } from 'react'
+import {login} from '../Redux/authSlice'
 import { FirebaseContext } from '../context/Firebase'
+import { useDispatch } from 'react-redux'
 
 function Login() {
   const {register,handleSubmit} = useForm()
   const navigate=useNavigate()
+  const dispatch=useDispatch()
   const {logIn} = useContext(FirebaseContext)
 
   function handleLogin({email,password}){
     logIn(email,password)
       .then((res)=>{
+        dispatch(login(res?.currentUser?.providerData[0]
+        ))
         console.log(res.user)
       }).catch((err)=>{
         console.log('Error in logIn: ',err)
