@@ -30,10 +30,10 @@ function ProInCart() {
             <li key={id}>
               <div className="flex p-2 justify-between">
                 <div className="flex gap-5">
-                  <img className="w-16 aspect-square border border-black rounded-md" src={item.image} alt="" />
+                  <img className="w-16 aspect-square border object-cover border-black rounded-md" src={item.image} alt="" />
                   <div className="flex flex-col justify-between">
                     <span className="text-base text-gray-900">{item.title}</span>
-                    <div className="text-base text-gray-800 border border-black w-1/2 rounded flex justify-around">
+                    <div className="text-[15px] text-gray-800 border border-black w-1/2 rounded flex justify-around">
                       <div onClick={()=>handleQuantity(item,'decrement')} className="cursor-pointer">-</div>
                       <div>{item.quantity}</div>
                       <div onClick={()=>handleQuantity(item,'increment')} className="cursor-pointer">+</div>
@@ -42,7 +42,7 @@ function ProInCart() {
                 </div>
                 <div className="flex flex-col justify-end gap-4 items-center">
                   <img onClick={()=>handleRemove(item)} className="w-4 opacity-70 hover:opacity-100 hover:scale-110 cursor-pointer aspect-square" src={trash} alt="" />
-                  <span className="text-base text-green-600">+ ${Number(item.price)*item.quantity}</span>
+                  <span className="text-[15px] text-green-600">${Number(item.price)*item.quantity}</span>
                   {/* <span>{price}</span> */}
                 </div>
               </div>
