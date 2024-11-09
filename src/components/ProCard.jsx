@@ -4,7 +4,7 @@ import useLocalStorage from '../hooks/useLocalStorage';
 
 function ProCard({image,title,price,className=''}) {
   const dispatch = useDispatch()
-  const {setData} = useLocalStorage('localCart')
+  const {setData} = useLocalStorage('localCart',true)
 
   function handleAddToCart(data){
     dispatch(addToCart(data))

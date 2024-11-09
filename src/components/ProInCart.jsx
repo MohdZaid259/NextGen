@@ -5,7 +5,7 @@ import useLocalStorage from '../hooks/useLocalStorage'
 
 function ProInCart() {
   const items= useSelector((state) => state.cart.cartItems);
-  const {removeData} = useLocalStorage('localCart')
+  const {removeData} = useLocalStorage('localCart',true)
   const dispatch = useDispatch()
 
   const handleRemove=(item)=>{
@@ -42,7 +42,7 @@ function ProInCart() {
                 </div>
                 <div className="flex flex-col justify-end gap-4 items-center">
                   <img onClick={()=>handleRemove(item)} className="w-4 opacity-70 hover:opacity-100 hover:scale-110 cursor-pointer aspect-square" src={trash} alt="" />
-                  <span className="text-[15px] text-green-600">${Number(item.price)*item.quantity}</span>
+                  <span className="text-[15px] text-green-600">+ ${Number(item.price)*item.quantity}</span>
                   {/* <span>{price}</span> */}
                 </div>
               </div>

@@ -1,8 +1,8 @@
 import { createContext } from "react";
 import { initializeApp } from "firebase/app";
-import { getDatabase, ref, set } from "firebase/database";
+import { getDatabase, ref, set, get } from "firebase/database";
 import conf from '../conf/conf.js'
-import { getAuth,createUserWithEmailAndPassword,signInWithEmailAndPassword,signOut,GoogleAuthProvider,signInWithPopup } from "firebase/auth";
+import { getAuth,createUserWithEmailAndPassword,signInWithEmailAndPassword,signOut,GoogleAuthProvider,signInWithPopup,updateProfile } from "firebase/auth";
 
 const firebaseConfig = conf
 
@@ -25,13 +25,19 @@ function logIn(email,password){
 function signOutUser(){
   return signOut(auth)
 }
+function updateUserProfile(profile) {
+  return updateProfile(auth.currentUser, profile);
+}
 function putData(key,data){
   return set(ref(database,key),data)
+}
+function getData(key) {
+  return get(ref(database, key));
 }
 
 const FirebaseProvider = (props) => { 
   return (
-    <FirebaseContext.Provider value={{auth,putData,signUp,signUpGoogle,logIn,signOutUser}}>
+    <FirebaseContext.Provider value={{auth,putData,signUp,signUpGoogle,logIn,signOutUser,updateUserProfile,getData}}>
       {props.children}
     </FirebaseContext.Provider>
   )

@@ -5,17 +5,20 @@ import { useContext } from 'react'
 import {login} from '../Redux/authSlice'
 import { FirebaseContext } from '../context/Firebase'
 import { useDispatch } from 'react-redux'
+import useLocalStorage from '../hooks/useLocalStorage'
 
 function SignUp() {
   const {register,handleSubmit} = useForm()
   const {signUp,signUpGoogle} = useContext(FirebaseContext)
   const navigate=useNavigate()
   const dispatch = useDispatch()
+  const {setData} = useLocalStorage('auth')
 
   function handleGSignUp(){
     signUpGoogle()
       .then((res)=>{
-        dispatch(login(res?.currentUser?.providerData[0]))
+        setData(res?.user?.providerData[0])
+        dispatch(login(res?.user?.providerData[0]))
       })
       .catch((err)=>console.log(err))
   }

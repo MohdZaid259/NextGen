@@ -32,10 +32,9 @@ function Navbar() {
   const AnimatePop=motion(LoginPopup)
 
   const user = useSelector((state)=>state?.auth?.userData)
-  const {totalQuantity} = useSelector(state=>state.cart)
-
-  console.log(user)
+  const {totalQuantity} = useSelector(state=>state?.cart)
   
+  console.log(user)
   useEffect(()=>{
     if(user){
       setVisible(false)

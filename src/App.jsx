@@ -7,17 +7,15 @@ import { useDispatch } from 'react-redux'
 import {login,logout} from './Redux/authSlice'
 import {addToCart} from './Redux/cartSlice'
 import useLocalStorage from './hooks/useLocalStorage'
-import { useContext } from 'react'
-import { FirebaseContext } from './context/Firebase'
 
 function App() {
   const [loading,setLoading]=useState(true)
   const dispatch=useDispatch()
-  const {getData} =useLocalStorage('localCart')
-  let itemList=getData()
-  
-  let {auth}=useContext(FirebaseContext)
-  let userData=auth?.currentUser?.providerData[0]
+
+  const {getData:getCartData} =useLocalStorage('localCart',true)
+  let itemList=getCartData()
+  const {getData:getAuthData} =useLocalStorage('auth')
+  let userData=getAuthData()
 
   useEffect(()=>{
     if(itemList){
@@ -26,14 +24,14 @@ function App() {
   },[])
 
   useEffect(()=>{
-      if(!loading && auth){
+      if(userData){
         dispatch(login(userData))
         setLoading(false)
       }else{
         dispatch(logout())
         setLoading(false)
       }
-  },[loading,auth,dispatch,userData])
+  },[dispatch,userData])
 
   if(loading) return <p>Loading...</p>
   return (

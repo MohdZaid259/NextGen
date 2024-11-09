@@ -4,18 +4,23 @@ import close from '../assets/icons/close.png'
 import { useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
 import { FirebaseContext } from '../context/Firebase';
+import useLocalStorage from '../hooks/useLocalStorage';
+import { useDispatch } from 'react-redux';
+import { logout } from '../Redux/authSlice';
 
 function Profile() {
+  const navigate=useNavigate()
   const userData=useSelector(state=>state.auth.userData)
-  console.log(userData)
+  const {removeData} = useLocalStorage('auth')
+  const dispatch = useDispatch()
   const {signOutUser} = useContext(FirebaseContext)
+
   const [data,setData]=useState({
-    name: 'ad',
-    username:'da',
+    name: userData?.displayName || '',
+    username:userData?.email || '',
     status:'Active',
     about:''
   })
-  const navigate=useNavigate()
 
   function handleChange(e){
     const {name,value}=e.target
@@ -31,12 +36,13 @@ function Profile() {
     }));
   }
   function submitInfo(){
-    
+
   }
   function handleLogout(){
     signOutUser()
-    .then(res=>console.log(res))
-    .catch((err)=>console.log('signout err: ',err))
+    removeData()
+    dispatch(logout())
+    navigate('/')
   }
   return (
     <div className='flex justify-center items-center'>
@@ -45,7 +51,7 @@ function Profile() {
         <div className='flex flex-col my-3 gap-1'>
           <span className=' text-gray-600 font-semibold'>Display picture</span>
           <div className='flex mt-2'>
-            <img className='w-12 rounded-md mx-5' src={'picture'} alt="" />
+            <img className='w-12 rounded-md mx-5' src={userData?.photoURL} alt="logo" />
             <div className='flex mx-auto justify-center items-center'>
             <button className='bg-emerald-500 mr-3 rounded-md active:bg-emerald-500 hover:bg-emerald-600 text-white px-2  py-1'>Change picture</button>
             <button className='text-red-500  hover:bg-red-500 hover:text-white active:bg-red-500 px-2 py-1 border rounded-md'>Delete picture</button>
@@ -69,8 +75,8 @@ function Profile() {
           <input className='px-2 py-1 border w-full rounded focus:border-emerald-500 outline-none' type="text" placeholder='A brief introduction of yourself...' onChange={handleChange} name='about' value={data.about}/>
         </div>
         <div className='flex mt-5 justify-end items-center gap-2'>
-        <button className='text-sm text-white bg-emerald-500 font-semibold hover:bg-emerald-600 active:bg-emerald-500 px-2 py-1 rounded-md' onClick={()=>submitInfo}>Save Changes</button>
-        <button className=' text-white bg-red-500 font-semibold text-sm hover:bg-red-600 active:bg-red-500 px-2 py-1 rounded-md' onClick={()=>handleLogout()}>Logout</button>
+        <button className='text-sm text-white bg-emerald-500 font-semibold hover:bg-emerald-600 active:bg-emerald-500 px-2 py-1 rounded-md' onClick={submitInfo}>Save Changes</button>
+        <button className=' text-white bg-red-500 font-semibold text-sm hover:bg-red-600 active:bg-red-500 px-2 py-1 rounded-md' onClick={handleLogout}>Logout</button>
         </div>
       </div>
     </div>

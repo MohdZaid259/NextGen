@@ -1,19 +1,28 @@
-function useLocalStorage(key) {
+function useLocalStorage(key,isArray=false) {
 
   const setData = (value) => {
-    const existingData = JSON.parse(window.localStorage.getItem(key)) || [];
-    existingData.push(value);
-    window.localStorage.setItem(key, JSON.stringify(existingData));
+    if(isArray){
+      const existingData = JSON.parse(window.localStorage.getItem(key)) || [];
+      existingData.push(value);
+      window.localStorage.setItem(key, JSON.stringify(existingData));
+    }else{
+      window.localStorage.setItem(key, JSON.stringify(value));
+    }
   };
 
   const getData = () => {
-    return JSON.parse(window.localStorage.getItem(key)); 
+    const data = JSON.parse(window.localStorage.getItem(key)); 
+    return isArray ? data || [] : data;
   };
 
   const removeData = (value) => {
-    let existingData = JSON.parse(window.localStorage.getItem(key)) || [];
-    existingData=existingData.filter((item)=>item.title!==value.title)
-    window.localStorage.setItem(key, JSON.stringify(existingData));
+    if(isArray){
+      let existingData = JSON.parse(window.localStorage.getItem(key)) || [];
+      existingData=existingData.filter((item)=>item.title!==value.title)
+      window.localStorage.setItem(key, JSON.stringify(existingData));
+    }else{
+      window.localStorage.removeItem(key);
+    }
   };
 
   return { setData, getData, removeData };
