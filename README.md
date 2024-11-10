@@ -8,12 +8,9 @@ Currently, two official plugins are available:
 - [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
 debouncing on input
-throttling on scroll
 lazy loading and suspence on import/image
-framer motion animation
-OAuth 2.0
-authentication authorization
-google integration
+framer motion 
+firebase authentication authorization
 matching fonts
 protected routes
 ai chatbot by dialogflow es

@@ -15,10 +15,10 @@
 }
 .navline::after{
   content: '';
-  background-color: #3dbc68;
+  background-color: #219d4b;
   height: 2px;
   width: 0;
-  border-radius: 50%;
+  border-radius: 10px;
   bottom: 0;
   left: 0;
   transition: width 400ms ease-in-out;

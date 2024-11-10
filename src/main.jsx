@@ -14,6 +14,10 @@ import Herby from './components/Herby.jsx'
 import {FirebaseProvider} from './context/Firebase.jsx'
 import SignUp from './components/Signup.jsx'
 import Login from './components/Login.jsx'
+import PrivacyPolicy from './pages/PrivacyPolicy.jsx'
+import ReturnPolicy from './pages/ReturnPolicy.jsx'
+import ShippingDelivery from './pages/ShippingDelivery.jsx'
+import TermsConditions from './pages/TermsConditions.jsx'
 
 const router=createBrowserRouter(
   createRoutesFromElements(
@@ -27,6 +31,10 @@ const router=createBrowserRouter(
       <Route path='contact' element={<ContactPage/>}/>
       <Route path='login' element={<Login/>}/>
       <Route path='signup' element={<SignUp/>}/>
+      <Route path='privacy-policy' element={<PrivacyPolicy/>}/>
+      <Route path='return-policy' element={<ReturnPolicy/>}/>
+      <Route path='shipping-delivery' element={<ShippingDelivery/>}/>
+      <Route path='terms-conditions' element={<TermsConditions/>}/>
     </Route>
     <Route path='/herby' element={<Herby/>}/>
     </>

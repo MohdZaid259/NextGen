@@ -10,9 +10,7 @@ import { motion } from 'framer-motion'
 import LoginPopup from './LoginPopup'
 import Search from './Search'
 import { useSelector } from 'react-redux'
-import search from '../assets/icons/search.png'
 import Cart from './Cart'
-import SearchPane from './SearchPane'
 
 let list=[
   {name:'Home',path:''},
@@ -24,7 +22,6 @@ let list=[
 function Navbar() {
   const [ham,setHam] = useState(false)
   const [visible,setVisible] = useState(false)
-  const [searchPane,setSearchPane] = useState(false)
   const [pane,setPane] = useState(false)
   const navigate = useNavigate()
   const menuRef = useRef(null);
@@ -34,6 +31,9 @@ function Navbar() {
   const user = useSelector((state)=>state?.auth?.userData)
   const {totalQuantity} = useSelector(state=>state?.cart)
   
+  
+  console.log(user)
+
   console.log(user)
   useEffect(()=>{
     if(user){
@@ -58,15 +58,6 @@ function Navbar() {
   }
   function toggle(){
     setPane(!pane)
-  }
-  function handleSearchPane(){
-    console.log('change')
-    setSearchPane(!searchPane)
-  }
-  if(pane){
-    document.body.style.overflow='hidden'
-  }else{
-    document.body.style.overflow='auto'
   }
 
   useEffect(()=>{
@@ -104,11 +95,9 @@ function Navbar() {
             return <div key={id} className='relative'><NavLink to={item.path} className={({isActive})=>`${isActive?'text-emerald-600 active':''} navline max-w-max text-lg font-semibold md:text-xl font-quicksand hover:text-emerald-600`}>{item.name}</NavLink></div>
           })}
           </ul>
-          <div className='hidden xl:block'>
+          <div className='hidden lg:block'>
             <Search/>
           </div>
-          {searchPane && <div className='absolute z-99 w-full h-1/3 bg-red-500'><SearchPane/></div>}
-          <img onClick={handleSearchPane} className='w-5 md:w-[22px] cursor-pointer xl:hidden' src={search} alt="" />
           <div onClick={()=>{user?navigate('/profile'):navigate('/signup')}} className={`${user?'':'hover:bg-pink-500 hover:invert p-[6px] cursor-pointer active:bg-pink-600 rounded-md '} flex justify-center items-center gap-2`}>
             {user?<img className='w-8 cursor-pointer rounded-full' alt='logo' src={user?.photoURL}/>:<img className='cursor-pointer w-5 md:w-6' alt='profile' src={profile}/>}
             {user?'':<span className='text-base hidden md:block md:text-lg font-quicksand font-semibold '>SignUp</span>}
@@ -119,7 +108,12 @@ function Navbar() {
             {totalQuantity>0 && <div className='absolute top-0 -right-2 w-4 h-4 rounded-full bg-red-500 p-1 text-white text-xs flex justify-center items-center'>{totalQuantity}</div>}
           </div>
         </div>
-      {pane && <div ref={cartRef} className={`absolute right-0 top-0 z-50 min-[300px]:w-[80%] sm:w-[50%] md:w-[40%] lg:w-[30%] h-screen shadow-[-3px_0_10px_0px_rgba(0,0,0,0.3)] bg-slate-100 transition-all duration-500 ease-linear ${pane?'translate-x-0':'translate-x-full'}`}><Cart toggle={toggle}/></div>}
+        <div
+          ref={cartRef}
+          className={`absolute right-0 top-0 z-50 min-[300px]:w-[80%] sm:w-[50%] md:w-[40%] lg:w-[30%] h-screen shadow-[-3px_0_10px_0px_rgba(0,0,0,0.3)] bg-slate-100 transition-all duration-300 ease-linear ${
+            pane ? 'translate-x-0' : 'translate-x-full'}`}>
+            <Cart toggle={toggle} />
+        </div>
       </div>
     </>
   )

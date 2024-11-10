@@ -19,14 +19,16 @@ function SignUp() {
       .then((res)=>{
         setData(res?.user?.providerData[0])
         dispatch(login(res?.user?.providerData[0]))
+        navigate('/')
       })
       .catch((err)=>console.log(err))
   }
   function handleSignup({email,password}){
     signUp(email,password)
       .then((res)=>{
-        dispatch(login(res?.currentUser?.providerData[0]))
-        console.log(res)
+        setData(res?.user?.providerData[0])
+        dispatch(login(res?.user?.providerData[0]))
+        navigate('/')
       }).catch((err)=>{
         console.log('Error in signUp: ',err)
     })

@@ -20,8 +20,8 @@ function Footer() {
       <div>
         <div className='flex flex-col gap-1'>
           <p className='mb-1 text-base sm:text-lg font-bold'>Contact</p>
-          <p className='md:text-sm'><span className='font-bold'>Address:</span> Wellington Road, Street 32, San Francisco</p>
-          <p className='md:text-sm'><span className='font-bold'>Phone:</span> +01 2222 365 / (+91) 01 2345 6789</p>
+          <p className='md:text-sm'><span className='font-bold'>Address:</span> 535/15, Azad Nagar, Raebareli</p>
+          <p className='md:text-sm'><span className='font-bold'>Phone:</span> (+91) 78603 68175/ (+91) 97953 72555</p>
           <p className='md:text-sm'><span className='font-bold'>Hours:</span> 10:00 - 18:00, Mon - Sat</p>
         </div>
       </div>
