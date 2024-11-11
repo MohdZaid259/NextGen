@@ -3,9 +3,11 @@ import app from '../assets/pay/app.jpg'
 import play from '../assets/pay/play.jpg'
 import pay from '../assets/pay/pay.png'
 import { motion } from 'framer-motion'
+import { useNavigate } from 'react-router-dom'
 
 function Footer() {
-  
+  const navigate =useNavigate()
+
   const textVariants = {
     hidden: { opacity: 0, y:50},
     visible:{opacity: 1, y:0, transition:{duration:0.5,delay:0.3}}
@@ -28,10 +30,10 @@ function Footer() {
       <div className='flex flex-col gap-1'>
         <p className='mb-1 text-base sm:text-lg font-bold'>About</p>
         <p className='md:text-sm'>About us</p>
-        <p className='md:text-sm'>Delivery Information</p>
-        <p className='md:text-sm'>Privacy Policy</p>
-        <p className='md:text-sm'>Terms & Conditions</p>
-        <p className='md:text-sm'>Contact Us</p>
+        <p onClick={()=>navigate('/shippingDelivery')} className='md:text-sm'>Delivery Information</p>
+        <p onClick={()=>navigate('/privacyPolicy')} className='md:text-sm'>Privacy Policy</p>
+        <p onClick={()=>navigate('/termsConditions')} className='md:text-sm'>Terms & Conditions</p>
+        <p onClick={()=>navigate('/returnPolicy')} className='md:text-sm'>Return Policy</p>
       </div>
       <div className='hidden sm:flex flex-col gap-1'>
         <p className='mb-1 text-base sm:text-lg font-bold'>My Account</p>

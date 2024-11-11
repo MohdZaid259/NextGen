@@ -1,12 +1,16 @@
-import React from 'react'
-import ShippingDelivery from '../assets/ShippingDelivery.txt'
+import React, { useState, useEffect } from 'react';
 
 function ShippingDelivery() {
-  return (
-    <div>
-      {ShippingDelivery}
-    </div>
-  )
+  const [content, setContent] = useState('');
+
+  useEffect(() => {
+    fetch('/shippingDelivery.txt')
+      .then((response) => response.text())
+      .then((data) => setContent(data))
+      .catch((error) => console.error(error));
+  }, []);
+
+  return <div>{content}</div>;
 }
 
-export default ShippingDelivery
+export default ShippingDelivery;

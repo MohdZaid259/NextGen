@@ -1,12 +1,16 @@
-import React from 'react'
-import TermsConditions from '../assets/TermsConditions.txt'
+import React, { useState, useEffect } from 'react';
 
 function TermsConditions() {
-  return (
-    <div>
-      {TermsConditions}
-    </div>
-  )
+  const [content, setContent] = useState('');
+
+  useEffect(() => {
+    fetch('/termsConditions.txt')
+      .then((response) => response.text())
+      .then((data) => setContent(data))
+      .catch((error) => console.error(error));
+  }, []);
+
+  return <div>{content}</div>;
 }
 
-export default TermsConditions
+export default TermsConditions;
