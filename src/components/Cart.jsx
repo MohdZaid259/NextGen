@@ -7,8 +7,7 @@ import right from '../assets/icons/right.png'
 import ProInCart from './ProInCart';
 
 function Cart({toggle}) {
-  // const userData=useSelector(state=>state.auth.userData)
-  const userData=true
+  const userData=useSelector(state=>state.auth.userData)
   const {totalPrice}=useSelector(state=>state.cart)
   const cartItem=useSelector(state=>state.cart.cartItems)
 
@@ -25,7 +24,7 @@ function Cart({toggle}) {
         <img onClick={toggle} className='h-12 cursor-pointer p-4 opacity-60 hover:opacity-100' src={close} alt="" />
       </div>
       <hr className='mx-5 mb-2 border border-gray-300'/>
-          {cartItem.length>0?<ProInCart/>:<img loading='lazy' className='w-full' src={missingCart} alt="cart" />}
+          {cartItem.length>0?<ProInCart/>:<img loading='lazy' className='w-full contrast-[0.9]' src={missingCart} alt="cart" />}
       <hr className='mx-5 my-2 border border-gray-300'/>
       <span className='text-lg mx-5 text-gray-800 tracking-widerd'>Recommended Products</span>
       <div className='fixed w-full z-50 px-5 py-3 bottom-0 shadow-[0_0_10px_0px_rgba(0,0,0,0.3)]'>
