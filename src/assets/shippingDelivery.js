@@ -1,4 +1,4 @@
-Shipping and Delivery Policy
+export const shippingDelivery = `Shipping and Delivery Policy
 Welcome to NextGen Herbals! We strive to provide the best products and a seamless shopping experience for our valued customers. This Shipping and Delivery Policy outlines the terms and conditions regarding the shipment of our herbal products.
 
 Processing Time
@@ -37,4 +37,4 @@ Website: https://nextgen-herbals.vercel.app/
 Policy Updates
 This policy may be updated periodically to reflect changes in our practices. The updated policy will be posted on this page with the effective date.
 
-Thank you for choosing NextGen Herbals for your herbal needs! 
+Thank you for choosing NextGen Herbals for your herbal needs! `

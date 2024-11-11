@@ -1,16 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import {shippingDelivery} from '../assets/shippingDelivery.js';
 
 function ShippingDelivery() {
-  const [content, setContent] = useState('');
-
-  useEffect(() => {
-    fetch('/shippingDelivery.txt')
-      .then((response) => response.text())
-      .then((data) => setContent(data))
-      .catch((error) => console.error(error));
-  }, []);
-
-  return <div>{content}</div>;
+  return <div>{shippingDelivery}</div>;
 }
 
 export default ShippingDelivery;

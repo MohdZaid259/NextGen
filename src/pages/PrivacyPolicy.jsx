@@ -1,16 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import {privacyPolicy} from '../assets/privacyPolicy.js';
 
 function PrivacyPolicy() {
-  const [content, setContent] = useState('');
-
-  useEffect(() => {
-    fetch('/privacyPolicy.txt')
-      .then((response) => response.text())
-      .then((data) => setContent(data))
-      .catch((error) => console.error(error));
-  }, []);
-
-  return <div>{content}</div>;
+  return <div>{privacyPolicy}</div>;
 }
 
 export default PrivacyPolicy;

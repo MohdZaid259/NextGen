@@ -1,16 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import {returnPolicy} from '../assets/returnPolicy.js';
 
 function ReturnPolicy() {
-  const [content, setContent] = useState('');
-
-  useEffect(() => {
-    fetch('/returnPolicy.txt')
-      .then((response) => response.text())
-      .then((data) => setContent(data))
-      .catch((error) => console.error(error));
-  }, []);
-
-  return <div>{content}</div>;
+  return <div>{returnPolicy}</div>;
 }
 
 export default ReturnPolicy;

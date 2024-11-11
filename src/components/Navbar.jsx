@@ -31,10 +31,6 @@ function Navbar() {
   const user = useSelector((state)=>state?.auth?.userData)
   const {totalQuantity} = useSelector(state=>state?.cart)
   
-  
-  console.log(user)
-
-  console.log(user)
   useEffect(()=>{
     if(user){
       setVisible(false)
@@ -102,7 +98,7 @@ function Navbar() {
             {user?<img className='w-8 cursor-pointer rounded-full' alt='logo' src={user?.photoURL}/>:<img className='cursor-pointer w-5 md:w-6' alt='profile' src={profile}/>}
             {user?'':<span className='text-base hidden md:block md:text-lg font-quicksand font-semibold '>SignUp</span>}
           </div>
-          {visible && <AnimatePop initial={{scale:0}} animate={{scale:1}} className={`animate-bounce duration-100 absolute top-16 right-0 md:right-[95px] drop-shadow-md`}/>}
+          {visible && <AnimatePop initial={{scale:0}} animate={{scale:1}} className={`animate-bounce duration-100 absolute top-16 right-5 md:right-[95px] drop-shadow-md`}/>}
           <div className='relative'>
             <img onClick={()=>setPane(true)} className='cart cursor-pointer block w-[26px]' src={cart} alt="cart" />
             {totalQuantity>0 && <div className='absolute top-0 -right-2 w-4 h-4 rounded-full bg-red-500 p-1 text-white text-xs flex justify-center items-center'>{totalQuantity}</div>}

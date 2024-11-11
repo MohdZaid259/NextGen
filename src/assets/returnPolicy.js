@@ -1,4 +1,4 @@
-Return Policy
+export const returnPolicy = `Return Policy
 Last updated: November 10, 2024
 
 Thank you for shopping at NextGen Herbals. We strive to provide high-quality products, but if you're not completely satisfied with your purchase, we're here to help. Please review our return policy below for details on how to return your order.
@@ -38,4 +38,4 @@ Contact Us
 If you have any questions about our Return Policy, please reach out:
 
 Phone: +91-9795372555
-Email: razvizaid259@gmail.com
+Email: razvizaid259@gmail.com`

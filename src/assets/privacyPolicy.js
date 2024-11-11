@@ -1,4 +1,4 @@
-NextGen Privacy Policy.
+export const privacyPolicy = `NextGen Privacy Policy.
 Last updated: 10-November-2024
 
 This Privacy Policy describes how NextGen (the "Site", "we", "us", or "our") collects, uses, and discloses your personal information when you visit, use our services, or make a purchase from https://nextgen-herbals.vercel.app/ (the "Site") or otherwise communicate with us (collectively, the "Services"). For purposes of this Privacy Policy, "you" and "your" means you as the user of the Services, whether you are a customer, website visitor, or another individual whose information we have collected pursuant to this Privacy Policy.
@@ -143,4 +143,4 @@ If we transfer your personal information out of Europe, we will rely on recogniz
 
 Contact
 
-Should you have any questions about our privacy practices or this Privacy Policy, or if you would like to exercise any of the rights available to you, please call +91 97953 72555 or email us at razvizaid259@gmail.com or contact us at 578/D Azad Nagar, Raebareli, Raebareli, UP, 229001, India.
+Should you have any questions about our privacy practices or this Privacy Policy, or if you would like to exercise any of the rights available to you, please call +91 97953 72555 or email us at razvizaid259@gmail.com or contact us at 578/D Azad Nagar, Raebareli, Raebareli, UP, 229001, India.`

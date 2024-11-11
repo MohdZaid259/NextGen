@@ -1,4 +1,4 @@
-TERMS OF SERVICE
+export const termsConditions = `TERMS OF SERVICE
 
 ----
 
@@ -151,4 +151,4 @@ Questions about the Terms of Service should be sent to us at razvizaid259@gmail.
 Our contact information is posted below:
 Mohd Zaid
 razvizaid259@gmail.com
-+91 97953 72555
++91 97953 72555`
