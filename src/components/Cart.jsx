@@ -7,10 +7,10 @@ import right from '../assets/icons/right.png'
 import ProInCart from './ProInCart';
 
 function Cart({toggle}) {
-  const userData=useSelector(state=>state.auth.userData)
+  // const userData=useSelector(state=>state.auth.userData)
   const {totalPrice}=useSelector(state=>state.cart)
   const cartItem=useSelector(state=>state.cart.cartItems)
-
+const userData= true
   function handleLogin(){
     
   }
