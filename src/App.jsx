@@ -7,7 +7,7 @@ import { useDispatch } from 'react-redux'
 import {login,logout} from './Redux/authSlice'
 import {addToCart} from './Redux/cartSlice'
 import useLocalStorage from './hooks/useLocalStorage'
-import HashLoader from "react-spinners/HashLoader";
+import LoadingLine from './components/Loading'
 
 function App() {
   const dispatch=useDispatch()
@@ -32,14 +32,7 @@ function App() {
   },[dispatch,userData])
 
   return (
-    <Suspense fallback={
-        <div className='h-screen flex justify-center items-center'>
-          <HashLoader
-            size={50}
-            color='green'
-          />
-        </div>
-      }>
+    <Suspense fallback={<LoadingLine/>}>
       <Navbar/>
       <Outlet/>
       <Helpdesk/>
