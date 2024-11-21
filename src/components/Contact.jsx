@@ -1,8 +1,10 @@
+import {useState, useRef, useEffect } from 'react' 
 import live from '../assets/icons/live.png'
 import time from '../assets/icons/time.png'
 import call from '../assets/icons/call.png'
 import email from '../assets/icons/email.png'
 import {motion} from 'framer-motion'
+import HashLoader from "react-spinners/HashLoader";
 
 let list=[
   {
@@ -23,6 +25,9 @@ let list=[
   },
 ]
 function Contact() {
+  const [loading,setLoading] = useState(true)
+  const iframeRef = useRef(null);
+
   const textVariants = {
     hidden: { opacity: 0, x:-50},
     visible:{ opacity: 1, x:0, transition:{duration:0.5}}
@@ -31,6 +36,13 @@ function Contact() {
     hidden: { opacity: 0, x:100},
     visible:{ opacity: 1, x:0, transition:{duration:0.5}}
   }
+
+  useEffect(() => {
+    const iframe = iframeRef.current;
+    if (iframe) {
+      iframe.onload = () => setLoading(false);
+    }
+  }, []);
 
   return (
     <div className='md:flex justify-around'>
@@ -48,7 +60,8 @@ function Contact() {
           })}
         </motion.div>
         <motion.div initial='hidden' whileInView='visible' variants={mapVariants} className='my-5 m-auto w-11/12 md:w-auto sm:mt-24 border-2 border-black rounded-md overflow-x-hidden'>
-          <iframe className='' src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d18112.122944024537!2d81.23303673102927!3d26.236050082422114!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x399ba14166f655d1%3A0x24dffd072d377f70!2sRaebareli%2C%20Uttar%20Pradesh!5e0!3m2!1sen!2sin!4v1722494656513!5m2!1sen!2sin" width="600" height="350" allowFullScreen="" loading="lazy" referrerPolicy="no-referrer-when-downgrade" />
+        {loading && <HashLoader className=' absolute top-[40%] left-1/2 transform -translate-x-1/2 -translate-y-1/2' size={50} color='green'/>}
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d18112.122944024537!2d81.23303673102927!3d26.236050082422114!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x399ba14166f655d1%3A0x24dffd072d377f70!2sRaebareli%2C%20Uttar%20Pradesh!5e0!3m2!1sen!2sin!4v1722494656513!5m2!1sen!2sin" ref={iframeRef} width="600" height="350"  loading="lazy" referrerPolicy="no-referrer-when-downgrade" />
         </motion.div>
     </div>
   )
