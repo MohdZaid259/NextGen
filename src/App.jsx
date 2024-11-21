@@ -10,7 +10,6 @@ import useLocalStorage from './hooks/useLocalStorage'
 import HashLoader from "react-spinners/HashLoader";
 
 function App() {
-  const [loading,setLoading]=useState(true)
   const dispatch=useDispatch()
 
   const {getData:getCartData} =useLocalStorage('localCart',true)
@@ -27,14 +26,11 @@ function App() {
   useEffect(()=>{
       if(userData){
         dispatch(login(userData))
-        setLoading(false)
       }else{
         dispatch(logout())
-        setLoading(false)
       }
   },[dispatch,userData])
 
-  if(loading) return <p>Loading...</p>
   return (
     <Suspense fallback={
         <div className='h-screen flex justify-center items-center'>
