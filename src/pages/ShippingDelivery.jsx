@@ -1,7 +1,15 @@
-import {shippingDelivery} from '../assets/shippingDelivery.js';
+import { lazy,Suspense } from 'react'
+const ShippingDeliveryComp = lazy(async () => {
+  const module = await import('../assets/shippingDelivery.js');
+  return { default: module.ShippingDeliveryComp };
+});
 
 function ShippingDelivery() {
-  return <div>{shippingDelivery}</div>;
+  return (
+    <Suspense fallback=''>
+      <ShippingDeliveryComp />
+    </Suspense>
+  )
 }
 
 export default ShippingDelivery;

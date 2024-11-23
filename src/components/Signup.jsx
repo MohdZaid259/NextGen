@@ -39,7 +39,7 @@ function SignUp() {
       <div className='w-4/5 sm:w-1/2 lg:w-1/3 m-auto  flex flex-col drop-shadow-lg bg-white rounded-md p-5'>
         <p className='font-bold font-nunito text-2xl'>Sign Up</p>
         <div onClick={handleGSignUp} className='border-2 flex justify-center items-center hover:border-green-500 rounded-sm my-4 py-1 text-center'>
-          <img className='w-5 mr-3' src={google} alt="googleIcon" />
+          <img loading='lazy' className='w-5 mr-3' src={google} alt="googleIcon" />
           <span className='font-nunito'>Sign up with Google</span>
         </div>
         <hr />

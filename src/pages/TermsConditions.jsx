@@ -1,7 +1,15 @@
-import {termsConditions} from '../assets/termsConditions.js';
+import { lazy,Suspense } from 'react'
+const TermsConditionsComp = lazy(async () => {
+  const module = await import('../assets/termsConditions.js');
+  return { default: module.TermsConditionsComp };
+});
 
 function TermsConditions() {
-  return <div>{termsConditions}</div>;
+  return (
+    <Suspense fallback=''>
+      <TermsConditionsComp />
+    </Suspense>
+  )
 }
 
 export default TermsConditions;

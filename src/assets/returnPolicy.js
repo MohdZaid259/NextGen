@@ -28,7 +28,7 @@ India
 Return Shipping Costs: Return shipping charges will be covered or reimbursed by us for eligible returns.
 Refunds and Exchanges
 Once your returned item is received and inspected, we will process your refund or exchange.
-Please allow 3–5 business days from the receipt of your return for processing.
+Please allow 3-5 business days from the receipt of your return for processing.
 Refunds will be issued to your original payment method. You will be notified via email once your return is processed.
 Exceptions
 For defective or damaged items:

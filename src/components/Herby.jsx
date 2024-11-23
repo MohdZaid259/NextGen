@@ -21,6 +21,7 @@ function Herby() {
   return (
     <div className="container h-dvh flex justify-center items-center">
       <iframe
+        loading="lazy"
         className="chat sm:rounded shadow-lg h-full sm:h-[500px]"
         allow="microphone;"
         width="400"

@@ -47,11 +47,11 @@ function Profile() {
   return (
     <div className='flex justify-center items-center'>
       <div className='bg-white relative text-sm mt-20 mx-5 sm:mx-0 mb-10 w-full sm:w-3/4 md:w-3/5 lg:w-2/5 p-5 font-nunito rounded shadow-md'>
-        <img onClick={()=>navigate('/')} className='w-4 absolute right-7 cursor-pointer opacity-50 hover:opacity-100' src={close} alt="" />
+        <img loading='lazy' onClick={()=>navigate('/')} className='w-4 absolute right-7 cursor-pointer opacity-50 hover:opacity-100' src={close} alt="" />
         <div className='flex flex-col my-3 gap-1'>
           <span className=' text-gray-600 font-semibold'>Display picture</span>
           <div className='flex mt-2'>
-            <img className='w-12 rounded-md mx-5' src={userData?.photoURL} alt="logo" />
+            <img loading='lazy' className='w-12 rounded-md mx-5' src={userData?.photoURL} alt="logo" />
             <div className='flex mx-auto justify-center items-center'>
             <button className='bg-emerald-500 mr-3 rounded-md active:bg-emerald-500 hover:bg-emerald-600 text-white px-2  py-1'>Change picture</button>
             <button className='text-red-500  hover:bg-red-500 hover:text-white active:bg-red-500 px-2 py-1 border rounded-md'>Delete picture</button>

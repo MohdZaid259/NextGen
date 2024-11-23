@@ -47,7 +47,7 @@ We shall not be liable to you or to any third-party for any modification, price 
 
 SECTION 5 - PRODUCTS OR SERVICES (if applicable)
 
-Certain products or Services may be available exclusively online through the website. These products or Services may have limited quantities and are subject to return or exchange only according to our Return Policy. To view our Return Policy, please visit [LINK TO RETURN POLICY]
+Certain products or Services may be available exclusively online through the website. These products or Services may have limited quantities and are subject to return or exchange only according to our Return Policy. To view our Return Policy, please visit NextGen privacy policy.
 
 We have made every effort to display as accurately as possible the colors and images of our products that appear at the store. We cannot guarantee that your computer monitor's display of any color will be accurate.
 We reserve the right, but are not obligated, to limit the sales of our products or Services to any person, geographic region or jurisdiction. We may exercise this right on a case-by-case basis. We reserve the right to limit the quantities of any products or Services that we offer. All descriptions of products or product pricing are subject to change at anytime without notice, at the sole discretion of us. We reserve the right to discontinue any product at any time. Any offer for any product or service made on this site is void where prohibited.
@@ -87,7 +87,7 @@ You agree that your comments will not violate any right of any third-party, incl
 
 SECTION 10 - PERSONAL INFORMATION
 
-Your submission of personal information through the store is governed by our Privacy Policy. To view our Privacy Policy, please see [LINK TO PRIVACY POLICY]
+Your submission of personal information through the store is governed by our Privacy Policy. To view our Privacy Policy, please visit NextGen privacy policy.
 
 SECTION 11 - ERRORS, INACCURACIES AND OMISSIONS
 

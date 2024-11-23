@@ -35,8 +35,15 @@
 #footer {
   font-size: 12px ;
 }
-#footerDiv p{
+#footerDiv span{
   cursor: default;
+}
+#footerDiv p{
+  cursor: pointer;
+}
+#footerDiv p:hover{
+  color:green;
+  text-decoration: underline;
 }
 
 #marquee{

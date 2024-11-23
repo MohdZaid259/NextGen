@@ -1,4 +1,4 @@
-export const privacyPolicy = `NextGen Privacy Policy.
+export const privacyPolicy= `NextGen Privacy Policy.
 Last updated: 10-November-2024
 
 This Privacy Policy describes how NextGen (the "Site", "we", "us", or "our") collects, uses, and discloses your personal information when you visit, use our services, or make a purchase from https://nextgen-herbals.vercel.app/ (the "Site") or otherwise communicate with us (collectively, the "Services"). For purposes of this Privacy Policy, "you" and "your" means you as the user of the Services, whether you are a customer, website visitor, or another individual whose information we have collected pursuant to this Privacy Policy.
@@ -20,6 +20,12 @@ What Personal Information We Collect
 The types of personal information we obtain about you depends on how you interact with our Site and use our Services. When we use the term "personal information", we are referring to information that identifies, relates to, describes or can be associated with you. The following sections describe the categories and specific types of personal information we collect.
 
 Information We Collect Directly from You
+
+We use Razorpay, a secure payment gateway, to process payments. Razorpay may collect payment card details and other information necessary to process payments securely. Razorpay adheres to strict industry standards for payment processing, including compliance with PCI DSS.
+
+Mention Razorpay's use of encryption and compliance with global security standards for handling payment data.
+
+For more information about how Razorpay manages and processes your payment information, please refer to their Privacy Policy
 
 Information that you directly submit to us through our Services may include:
 

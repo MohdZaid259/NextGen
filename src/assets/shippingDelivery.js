@@ -9,11 +9,11 @@ We deliver across India and offer the following shipping options:
 
 Standard Shipping:
 
-Delivery Time: 3–7 business days.
+Delivery Time: 3-7 business days.
 Shipping Charges: ₹50 (Free for orders above ₹500).
 Express Shipping:
 
-Delivery Time: 1–3 business days.
+Delivery Time: 1-3 business days.
 Shipping Charges: ₹150.
 Note: Delivery times may vary due to unforeseen circumstances such as weather conditions, holidays, or carrier delays.
 

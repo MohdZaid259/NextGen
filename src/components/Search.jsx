@@ -37,7 +37,7 @@ function Search() {
   
   return (
     <div>
-      <img className='w-5 cursor-pointer absolute top-[20px] ml-[198px]' src={search} alt="" />
+      <img loading='lazy' className='w-5 cursor-pointer absolute top-[20px] ml-[198px]' src={search} alt="" />
       <Input className='py-[0.5px] font-nunito bg-inherit px-2 text-lg font-normal outline-none rounded-md border-2 border-black' value={inputVal} type="text" ref={ref} onChange={handleChange} placeholder='Search here...'
       />
       {suggestions.length>0 && (

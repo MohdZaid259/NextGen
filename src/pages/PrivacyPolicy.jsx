@@ -1,7 +1,15 @@
-import {privacyPolicy} from '../assets/privacyPolicy.js';
+import { lazy,Suspense } from 'react'
+const PrivacyPolicyComp = lazy(async () => {
+  const module = await import('../assets/privacyPolicy.js');
+  return { default: module.PrivacyPolicyComp };
+});
 
 function PrivacyPolicy() {
-  return <div>{privacyPolicy}</div>;
+  return (
+    <Suspense fallback=''>
+      <PrivacyPolicyComp />
+    </Suspense>
+  )
 }
 
 export default PrivacyPolicy;
