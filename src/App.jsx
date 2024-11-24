@@ -1,4 +1,4 @@
-import {useEffect,lazy,Suspense, useState} from 'react'
+import {useEffect,lazy,Suspense} from 'react'
 const Navbar=lazy(()=>import('./components/Navbar'))
 const Footer=lazy(()=>import('./components/Footer'))
 const Helpdesk=lazy(()=>import('./components/Helpdesk'))
@@ -8,6 +8,7 @@ import {login,logout} from './Redux/authSlice'
 import {addToCart} from './Redux/cartSlice'
 import useLocalStorage from './hooks/useLocalStorage'
 import HashLoader from "react-spinners/HashLoader";
+import { CardPanelProvider } from './context/cartPanel'
 
 function App() {
   const dispatch=useDispatch()
@@ -40,10 +41,12 @@ function App() {
           />
         </div>
       }>
-      <Navbar/>
-      <Outlet/>
-      <Helpdesk/>
-      <Footer/>
+      <CardPanelProvider>
+        <Navbar/>
+        <Outlet/>
+        <Helpdesk/>
+        <Footer/>
+      </CardPanelProvider>
     </Suspense>
   )
 }

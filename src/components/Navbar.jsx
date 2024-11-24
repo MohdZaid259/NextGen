@@ -1,4 +1,4 @@
-import {useEffect, useState, useRef} from 'react'
+import {useEffect, useState, useRef, useContext} from 'react'
 import { NavLink } from 'react-router-dom'
 import logo1 from '../assets/logo1.png'
 import close from '../assets/icons/close.png'
@@ -11,6 +11,7 @@ import LoginPopup from './LoginPopup'
 import Search from './Search'
 import { useSelector } from 'react-redux'
 import Cart from './Cart'
+import { CardPanelContext } from "../context/cartPanel.jsx";
 
 let list=[
   {name:'Home',path:''},
@@ -22,12 +23,12 @@ let list=[
 function Navbar() {
   const [ham,setHam] = useState(false)
   const [visible,setVisible] = useState(false)
-  const [pane,setPane] = useState(false)
   const navigate = useNavigate()
   const menuRef = useRef(null);
   const cartRef = useRef(null);
   const AnimatePop=motion(LoginPopup)
 
+  const { isOpen,togglePanel } = useContext(CardPanelContext);
   const user = useSelector((state)=>state?.auth?.userData)
   const {totalQuantity} = useSelector(state=>state?.cart)
   
@@ -52,24 +53,21 @@ function Navbar() {
   function handleHam(){
     setHam(!ham)
   }
-  function toggle(){
-    setPane(!pane)
-  }
 
   useEffect(()=>{
     function exit(e){
       if(menuRef.current && !menuRef.current.contains(e.target) && !e.target.closest('.hamburger')) {
         setHam(false)
       }
-      if(cartRef.current && !cartRef.current.contains(e.target) && !e.target.closest('.cart')){
-        setPane(false)
+      if(isOpen && cartRef.current && !cartRef.current.contains(e.target) && !e.target.closest('.cart')){
+        togglePanel()
       }
     }
     document.addEventListener('click',exit)
     return ()=>{
       document.removeEventListener('click',exit)
     }
-  },[setHam])
+  },[setHam,isOpen])
 
   return (
     <>
@@ -100,15 +98,14 @@ function Navbar() {
           </div>
           {visible && <AnimatePop initial={{scale:0}} animate={{scale:1}} className={`animate-bounce duration-100 absolute top-16 right-5 md:right-[95px] drop-shadow-md`}/>}
           <div className='relative'>
-            <img loading='lazy' onClick={()=>setPane(true)} className='cart cursor-pointer block w-[26px]' src={cart} alt="cart" />
+            <img loading='lazy' onClick={togglePanel} className='cart cursor-pointer block w-[26px]' src={cart} alt="cart" />
             {totalQuantity>0 && <div className='absolute top-0 -right-2 w-4 h-4 rounded-full bg-red-500 p-1 text-white text-xs flex justify-center items-center'>{totalQuantity}</div>}
           </div>
         </div>
-        <div
-          ref={cartRef}
+        <div ref={cartRef}
           className={`absolute right-0 top-0 z-50 min-[300px]:w-[80%] sm:w-[50%] md:w-[40%] lg:w-[30%] h-screen shadow-[-3px_0_10px_0px_rgba(0,0,0,0.3)] bg-slate-100 transition-all duration-300 ease-linear ${
-            pane ? 'translate-x-0' : 'translate-x-full'}`}>
-            <Cart toggle={toggle} />
+            isOpen ? 'translate-x-0' : 'translate-x-full'}`}>
+            <Cart/>
         </div>
       </div>
     </>

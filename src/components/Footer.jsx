@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState,useContext } from 'react'
 import logo1 from '../assets/logo1.png'
 import app from '../assets/pay/app.jpg'
 import play from '../assets/pay/play.jpg'
@@ -6,12 +6,15 @@ import pay from '../assets/pay/pay.png'
 import { motion } from 'framer-motion'
 import { useNavigate } from 'react-router-dom'
 import close from '../assets/icons/close.png'
+import { CardPanelContext } from "../context/cartPanel.jsx";
 
 function Footer() {
   const [heading, setHeading] = useState('')
   const [content, setContent] = useState('');
   const [modal, setModal] = useState(false);
   const navigate =useNavigate()
+
+  const { togglePanel } = useContext(CardPanelContext);
 
   const textVariants = {
     hidden: { opacity: 0, y:50},
@@ -68,7 +71,7 @@ function Footer() {
       <div className='hidden sm:flex flex-col gap-1'>
         <span className='mb-1 text-base sm:text-lg font-bold'>My Account</span>
         <p onClick={()=>navigate('/signup')} className='md:text-sm'>Sign Up</p>
-        <p className='md:text-sm'>View Cart</p>
+        <p onClick={togglePanel} className='md:text-sm'>View Cart</p>
         <p className='md:text-sm'>My Wishlist</p>
         <p className='md:text-sm'>Track my order</p>
         <p onClick={()=>navigate('/herby')} className='md:text-sm'>Help</p>

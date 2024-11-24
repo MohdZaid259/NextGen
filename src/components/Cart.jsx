@@ -1,3 +1,4 @@
+import { useContext } from 'react';
 import missingCart from '../assets/missingCart.webp'
 import { useSelector } from 'react-redux';
 import close from '../assets/icons/close.png'
@@ -6,12 +7,14 @@ import tag from '../assets/icons/tag.png'
 import right from '../assets/icons/right.png'
 import ProInCart from './ProInCart';
 import { useNavigate } from 'react-router-dom';
+import { CardPanelContext } from '../context/cartPanel';
 
-function Cart({toggle}) {
+function Cart() {
   const navigate = useNavigate()
   const userData=useSelector(state=>state.auth.userData)
   const {totalPrice}=useSelector(state=>state.cart)
   const cartItem=useSelector(state=>state.cart.cartItems)
+  const { togglePanel } = useContext(CardPanelContext);
 
   return (
     <>
@@ -19,7 +22,7 @@ function Cart({toggle}) {
       <div className='font-nunito'>
       <div className='flex px-5 justify-between items-center p-3 pb-0'>
         <span className='text-2xl tracking-wider text-gray-700'>Cart</span>
-        <img onClick={toggle} className='h-12 cursor-pointer p-4 opacity-60 hover:opacity-100' src={close} alt="close" loading='lazy' />
+        <img onClick={togglePanel} className='h-12 cursor-pointer p-4 opacity-60 hover:opacity-100' src={close} alt="close" loading='lazy' />
       </div>
       <hr className='mx-5 mb-2 border border-gray-300'/>
           {cartItem.length>0?<ProInCart/>:<img loading='lazy' className='w-full contrast-[0.9]' src={missingCart} alt="cart" />}
@@ -50,12 +53,12 @@ function Cart({toggle}) {
       </div>
     </>:<>
       <div className='p-10 h-full flex justify-center items-center'>
-      <img onClick={toggle} className='h-12 cursor-pointer absolute right-5 top-5 p-4 opacity-50 hover:opacity-100' src={close} alt="close" loading='lazy' />
+      <img onClick={togglePanel} className='h-12 cursor-pointer absolute right-5 top-5 p-4 opacity-50 hover:opacity-100' src={close} alt="close" loading='lazy' />
         <div className='rounded-md bg-white drop-shadow-lg flex flex-col p-10 pb-7'>
           <img loading='lazy' className='w-56 m-auto mb-5' src={missingCart} alt="" />
           <span className='text-lg text-center'>Missing Cart items?</span>
           <span className='text-md text-center'>Login to see the items you added previously</span>
-          <button className='bg-emerald-500 m-auto active:bg-emerald-500 hover:bg-emerald-600 text-white font-nunito text-lg font-semibold py-1 w-32 rounded-sm mt-3' onClick={()=>navigate('/signup')}>Login</button>
+          <button className='bg-emerald-500 m-auto active:bg-emerald-500 hover:bg-emerald-600 text-white font-nunito text-lg font-semibold py-1 w-32 rounded-sm mt-3' onClick={()=>{navigate('/signup'),togglePanel()}}>Login</button>
         </div>
       </div>
     </>}
