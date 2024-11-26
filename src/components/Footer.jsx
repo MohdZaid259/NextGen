@@ -1,4 +1,4 @@
-import { useState,useContext } from 'react'
+import { useState,useContext, useEffect } from 'react'
 import logo1 from '../assets/logo1.png'
 import app from '../assets/pay/app.jpg'
 import play from '../assets/pay/play.jpg'
@@ -71,9 +71,9 @@ function Footer() {
       <div className='hidden sm:flex flex-col gap-1'>
         <span className='mb-1 text-base sm:text-lg font-bold'>My Account</span>
         <p onClick={()=>navigate('/signup')} className='md:text-sm'>Sign Up</p>
-        <p onClick={togglePanel} className='md:text-sm'>View Cart</p>
-        <p className='md:text-sm'>My Wishlist</p>
-        <p className='md:text-sm'>Track my order</p>
+        <p onClick={togglePanel} className='md:text-sm cart'>View Cart</p>
+        <p onClick={()=>navigate('/profile')} className='md:text-sm'>My Profile</p>
+        <p className='md:text-sm'>See More</p>
         <p onClick={()=>navigate('/herby')} className='md:text-sm'>Help</p>
       </div>
       <div className='flex flex-col gap-1'>

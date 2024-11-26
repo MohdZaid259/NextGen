@@ -28,7 +28,7 @@ function Navbar() {
   const cartRef = useRef(null);
   const AnimatePop=motion(LoginPopup)
 
-  const { isOpen,togglePanel } = useContext(CardPanelContext);
+  const { isOpen,togglePanel, cartClassName } = useContext(CardPanelContext);
   const user = useSelector((state)=>state?.auth?.userData)
   const {totalQuantity} = useSelector(state=>state?.cart)
   
@@ -59,15 +59,15 @@ function Navbar() {
       if(menuRef.current && !menuRef.current.contains(e.target) && !e.target.closest('.hamburger')) {
         setHam(false)
       }
-      if(isOpen && cartRef.current && !cartRef.current.contains(e.target) && !e.target.closest('.cart')){
-        togglePanel()
+      if (isOpen && cartRef.current && !cartRef.current.contains(e.target) && !e.target.closest(`.${cartClassName}`)) {
+        togglePanel();
       }
     }
-    document.addEventListener('click',exit)
+  document.addEventListener('click',exit)
     return ()=>{
       document.removeEventListener('click',exit)
     }
-  },[setHam,isOpen])
+  },[setHam,togglePanel,cartClassName])
 
   return (
     <>
@@ -97,8 +97,8 @@ function Navbar() {
             {user?'':<span className='text-base hidden md:block md:text-lg font-quicksand font-semibold '>SignUp</span>}
           </div>
           {visible && <AnimatePop initial={{scale:0}} animate={{scale:1}} className={`animate-bounce duration-100 absolute top-16 right-5 md:right-[95px] drop-shadow-md`}/>}
-          <div className='relative'>
-            <img loading='lazy' onClick={togglePanel} className='cart cursor-pointer block w-[26px]' src={cart} alt="cart" />
+          <div className='relative cart'>
+            <img loading='lazy' onClick={togglePanel} className='cursor-pointer block w-[26px]' src={cart} alt="cart" />
             {totalQuantity>0 && <div className='absolute top-0 -right-2 w-4 h-4 rounded-full bg-red-500 p-1 text-white text-xs flex justify-center items-center'>{totalQuantity}</div>}
           </div>
         </div>

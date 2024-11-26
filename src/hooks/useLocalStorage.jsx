@@ -25,7 +25,11 @@ function useLocalStorage(key,isArray=false) {
     }
   };
 
-  return { setData, getData, removeData };
+  const removeCartData = () => {
+    window.localStorage.removeItem(key)
+  };
+
+  return { setData, getData, removeData, removeCartData};
 }
 
 export default useLocalStorage;

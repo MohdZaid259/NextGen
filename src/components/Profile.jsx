@@ -7,12 +7,15 @@ import { FirebaseContext } from '../context/Firebase';
 import useLocalStorage from '../hooks/useLocalStorage';
 import { useDispatch } from 'react-redux';
 import { logout } from '../Redux/authSlice';
+import { deleteCart } from '../Redux/cartSlice';
 
 function Profile() {
   const navigate=useNavigate()
   const userData=useSelector(state=>state.auth.userData)
   const {removeData} = useLocalStorage('auth')
+  const {removeCartData} = useLocalStorage('localCart')
   const dispatch = useDispatch()
+  
   const {signOutUser} = useContext(FirebaseContext)
 
   const [data,setData]=useState({
@@ -41,6 +44,8 @@ function Profile() {
   function handleLogout(){
     signOutUser()
     removeData()
+    removeCartData()
+    dispatch(deleteCart())
     dispatch(logout())
     navigate('/')
   }
