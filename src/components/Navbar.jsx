@@ -28,7 +28,7 @@ function Navbar() {
   const cartRef = useRef(null);
   const AnimatePop=motion(LoginPopup)
 
-  const { isOpen,togglePanel, cartClassName } = useContext(CardPanelContext);
+  const { isOpen,togglePanel } = useContext(CardPanelContext);
   const user = useSelector((state)=>state?.auth?.userData)
   const {totalQuantity} = useSelector(state=>state?.cart)
   
@@ -59,7 +59,7 @@ function Navbar() {
       if(menuRef.current && !menuRef.current.contains(e.target) && !e.target.closest('.hamburger')) {
         setHam(false)
       }
-      if (isOpen && cartRef.current && !cartRef.current.contains(e.target) && !e.target.closest(`.${cartClassName}`)) {
+      if (isOpen && cartRef.current && !cartRef.current.contains(e.target) && !e.target.closest(`.cart`)) {
         togglePanel();
       }
     }
@@ -67,7 +67,7 @@ function Navbar() {
     return ()=>{
       document.removeEventListener('click',exit)
     }
-  },[setHam,togglePanel,cartClassName])
+  },[setHam,togglePanel])
 
   return (
     <>
