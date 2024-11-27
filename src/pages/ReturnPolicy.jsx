@@ -1,26 +1,16 @@
-import { lazy,Suspense } from 'react'
-// const ReturnPolicyComp = lazy(async () => {
-//   const module = await import('../assets/returnPolicy.js');
-//   return { default: module.ReturnPolicyComp };
-// });
-
-// Lazy load with async function
-const ReturnPolicyComp = lazy(async () => {
-  const module = await import('../assets/returnPolicy.js');
-
-  // Ensure 'ReturnPolicyComp' exists and is a valid React component
-  if (!module.ReturnPolicyComp || typeof module.ReturnPolicyComp !== 'function') {
-    throw new Error("ReturnPolicyComp is not a valid React component or is not exported correctly.");
-  }
-
-  return { default: module.ReturnPolicyComp }; // Map named export to default
-});
+import {returnPolicy} from '../assets/returnPolicy.js'
+import close from '../assets/icons/close.png'
+import { useNavigate } from 'react-router-dom';
 
 function ReturnPolicy() {
+  const navigate = useNavigate()
+
   return (
-    <Suspense fallback=''>
-      <ReturnPolicyComp />
-    </Suspense>
+    <div className="p-2 pt-20 sm:p-5 sm:pt-20">
+    <span className="sm:text-center mb-3 block text-2xl font-bold">Return Policy</span>
+    <img onClick={()=>navigate('/')} className='cursor-pointer absolute top-[90px] opacity-60 hover:opacity-100 right-10 h-4' src={close} alt="close" />
+    <p>{returnPolicy}</p> 
+  </div>
   )
 }
 

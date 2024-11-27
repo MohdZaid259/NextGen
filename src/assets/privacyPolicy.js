@@ -1,4 +1,4 @@
-export const privacyPolicy= `NextGen Privacy Policy.
+export const privacyPolicy = `NextGen Privacy Policy.
 Last updated: 10-November-2024
 
 This Privacy Policy describes how NextGen (the "Site", "we", "us", or "our") collects, uses, and discloses your personal information when you visit, use our services, or make a purchase from https://nextgen-herbals.vercel.app/ (the "Site") or otherwise communicate with us (collectively, the "Services"). For purposes of this Privacy Policy, "you" and "your" means you as the user of the Services, whether you are a customer, website visitor, or another individual whose information we have collected pursuant to this Privacy Policy.

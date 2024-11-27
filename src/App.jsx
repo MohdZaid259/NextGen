@@ -9,6 +9,7 @@ import {addToCart} from './Redux/cartSlice'
 import useLocalStorage from './hooks/useLocalStorage'
 import HashLoader from "react-spinners/HashLoader";
 import { CardPanelProvider } from './context/cartPanel'
+import { ScrollRestoration } from 'react-router-dom'
 
 function App() {
   const dispatch=useDispatch()
@@ -42,6 +43,7 @@ function App() {
         </div>
       }>
       <CardPanelProvider>
+      <ScrollRestoration/>
         <Navbar/>
         <Outlet/>
         <Helpdesk/>

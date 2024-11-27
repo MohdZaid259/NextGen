@@ -1,17 +1,13 @@
-import { useState,useContext, useEffect } from 'react'
+import { useContext } from 'react'
 import logo1 from '../assets/logo1.png'
 import app from '../assets/pay/app.jpg'
 import play from '../assets/pay/play.jpg'
 import pay from '../assets/pay/pay.png'
 import { motion } from 'framer-motion'
 import { useNavigate } from 'react-router-dom'
-import close from '../assets/icons/close.png'
 import { CardPanelContext } from "../context/cartPanel.jsx";
 
 function Footer() {
-  const [heading, setHeading] = useState('')
-  const [content, setContent] = useState('');
-  const [modal, setModal] = useState(false);
   const navigate =useNavigate()
 
   const { togglePanel } = useContext(CardPanelContext);
@@ -21,37 +17,12 @@ function Footer() {
     visible:{opacity: 1, y:0, transition:{duration:0.5,delay:0.3}}
   }
 
-  const handleDelivery = async () => {
-    const policy = await import('../assets/shippingDelivery.js');
-    setHeading('Shipping & Delivery Policy')
-    setContent(policy.shippingDelivery);
-    setModal(true);
-  };
-  const handlePrivacy = async () => {
-    const policy = await import('../assets/privacyPolicy.js');
-    setHeading('Privacy Policy')
-    setContent(policy.privacyPolicy);
-    setModal(true);
-  };
-  const handleReturn = async () => {
-    const policy = await import('../assets/returnPolicy.js');
-    setHeading('Return Policy')
-    setContent(policy.returnPolicy);
-    setModal(true);
-  };
-  const handleTerms = async () => {
-    const policy = await import('../assets/termsConditions.js');
-    setHeading('Terms & Conditions')
-    setContent(policy.termsConditions);
-    setModal(true);
-  };
-
   return (
     <div id='footer' className='pt-2 sm:pt-4 pb-2 border-t border-gray-700 text-sm tracking-widest bg-gray-200'>
     <div onClick={()=>window.scrollTo({top: 0,behavior:'smooth'})} className='ml-2 sm:ml-14 mb-2'>
       <img loading='lazy' className='w-8 mb-2  inline-block' src={logo1} alt="" /><span className='font-bold text-xl'>NextGen</span>
     </div>
-    <motion.div id='footerDiv' initial='hidden' whileInView='visible' variants={textVariants} className='px-2 font-quicksand sm:px-16 grid grid-cols-3 sm:grid-cols-4 sm:pb-10 gap-2 sm:gap-5'>
+    <motion.div id='footerDiv' initial='hidden' whileInView='visible' variants={textVariants} className='px-5 font-quicksand sm:px-16 grid grid-cols-2 sm:grid-cols-4 sm:pb-10 gap-2 sm:gap-5'>
       <div>
         <div className='flex flex-col gap-1'>
           <span className='mb-1 text-base sm:text-lg font-bold'>Contact</span>
@@ -63,12 +34,12 @@ function Footer() {
       <div className='flex flex-col gap-1'>
         <span className='mb-1 text-base sm:text-lg font-bold'>About</span>
         <p onClick={()=>navigate('/about')} className='md:text-sm'>About us</p>
-        <p onClick={handleDelivery} className='md:text-sm'>Delivery Information</p>
-        <p onClick={handlePrivacy} className='md:text-sm'>Privacy Policy</p>
-        <p onClick={handleTerms} className='md:text-sm'>Terms & Conditions</p>
-        <p onClick={handleReturn} className='md:text-sm'>Return Policy</p>
+        <p onClick={()=>navigate('/shipping-delivery')} className='md:text-sm'>Delivery Information</p>
+        <p onClick={()=>navigate('/privacy-policy')} className='md:text-sm'>Privacy Policy</p>
+        <p onClick={()=>navigate('/terms-conditions')} className='md:text-sm'>Terms & Conditions</p>
+        <p onClick={()=>navigate('/return-policy')} className='md:text-sm'>Return Policy</p>
       </div>
-      <div className='hidden sm:flex flex-col gap-1'>
+      <div className='flex flex-col gap-1'>
         <span className='mb-1 text-base sm:text-lg font-bold'>My Account</span>
         <p onClick={()=>navigate('/signup')} className='md:text-sm'>Sign Up</p>
         <p onClick={togglePanel} className='md:text-sm cart'>View Cart</p>
@@ -89,15 +60,6 @@ function Footer() {
     <div className='md:text-sm flex justify-center mb-1 mt-4 font-semibold'>
       All rights reserved. Copyright © 2024 - NextGen!
     </div>
-    {modal && (
-      <div className="border border-emerald-500 rounded-md p-5 m-10">
-        <div className='relative'>
-          <h2 className='text-center pb-4 text-xl tracking-widest font-bold'>{heading}</h2>
-          <img onClick={() => setModal(false)} className='h-3 absolute top-2 right-5 opacity-70 cursor-pointer hover:opacity-100' src={close} alt="close" loading='lazy' />
-        </div>
-        <p>{content}</p>
-      </div>
-    )}
     </div>
   )
 }
