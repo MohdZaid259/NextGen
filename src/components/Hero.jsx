@@ -11,7 +11,7 @@ function Hero() {
   
   return (
     <div className='h-screen bg-cont'>
-      <div className='relative py-40 sm:py-50 flex gap-2 flex-col justify-center px-3 sm:px-20'>
+      <div className='relative py-40 sm:py-50 flex gap-2 flex-col justify-center px-5 sm:px-20'>
         <motion.span initial='hidden' whileInView='visible' variants={textVariants} transition={{duration:0.5}} className='text-4xl sm:text-5xl font-bold text-black tracking-wider'>Welcome to <p className='block sm:inline text-emerald-500'>NextGen</p></motion.span>
         <motion.span initial='hidden' whileInView='visible' variants={textVariants} transition={{duration:0.55,delay:0.5}} className='text-2xl font-raleway pr-5 sm:text-3xl font-semibold text-black tracking-wide'>Your Trusted Source for Premium Herbal Products</motion.span>
         <motion.span initial='hidden' whileInView='visible' variants={textVariants} transition={{duration:0.55,delay:1}}  className='text-lg sm:w-2/3 font-nunito text-black'>We believe in the power of nature to support your health and well-being. Our extensive range of herbal products is crafted with care, using only the finest ingredients sourced from around the world. <span className='hidden md:inline'> Whether you&apos;re seeking remedies for everyday ailments or looking to enhance your overall vitality, we have the perfect natural solution for you.</span></motion.span>

@@ -18,7 +18,7 @@ function Footer() {
   }
 
   return (
-    <div id='footer' className='pt-2 sm:pt-4 pb-2 border-t border-gray-700 text-sm tracking-widest bg-gray-200'>
+    <div id='footer' className='pt-6 pl-2 sm:pl-0 pb-2 border-t border-gray-700 text-sm tracking-widest bg-gray-200'>
     <div onClick={()=>window.scrollTo({top: 0,behavior:'smooth'})} className='ml-2 sm:ml-14 mb-2'>
       <img loading='lazy' className='w-8 mb-2  inline-block' src={logo1} alt="" /><span className='font-bold text-xl'>NextGen</span>
     </div>
