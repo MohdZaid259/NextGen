@@ -9,7 +9,7 @@ import HashLoader from "react-spinners/HashLoader";
 let list=[
   {
     img:live,
-    desc:'578/D Azad Nagar, Raebareli, UttarPradesh, India'
+    desc:'578/D Azad Nagar, Raebareli, Uttar Pradesh, India'
   },
   {
     img:call,
