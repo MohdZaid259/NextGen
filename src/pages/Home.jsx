@@ -1,8 +1,8 @@
 import { lazy,Suspense } from 'react'
-const Hero=lazy(()=>import('../components/Hero'));
-const Card=lazy(()=>import('../components/Card'));
-const Services=lazy(()=>import('../components/Services'));
-const Product=lazy(()=>import('../components/Product'));
+const Hero=lazy(()=>import('../components/home/Hero'));
+const Card=lazy(()=>import('../components/home/Card'));
+const Services=lazy(()=>import('../components/home/Services'));
+const Product=lazy(()=>import('../components/home/Product'));
 import HashLoader from "react-spinners/HashLoader";
 
 function Home() {

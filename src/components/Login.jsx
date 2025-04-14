@@ -1,16 +1,15 @@
 import { useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
-// import mark from '../assets/icons/mark.png'
 import { useContext } from 'react'
-import {login} from '../Redux/authSlice'
+import { login } from '../Redux/authSlice'
 import { FirebaseContext } from '../context/Firebase'
 import { useDispatch } from 'react-redux'
 
 function Login() {
-  const {register,handleSubmit} = useForm()
+  const { register, handleSubmit } = useForm()
   const navigate=useNavigate()
   const dispatch=useDispatch()
-  const {logIn} = useContext(FirebaseContext)
+  const { logIn } = useContext(FirebaseContext)
 
   function handleLogin({email,password}){
     logIn(email,password)

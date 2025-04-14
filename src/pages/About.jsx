@@ -1,5 +1,5 @@
 import { lazy,Suspense } from 'react'
-const About=lazy(()=>import('../components/About'));
+const About=lazy(()=>import('../components/about/About'));
 import HashLoader from "react-spinners/HashLoader";
 
 function AboutPage() {

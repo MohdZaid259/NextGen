@@ -1,10 +1,10 @@
 import {useCallback, useRef, useState} from 'react'
 import SuggestList from './suggestion'
 import Input from './Input'
-import search from '../assets/icons/search.png'
+import {Search} from 'lucide-react'
 import { debounce } from 'lodash'
 
-function Search() {
+function SearchProduct() {
   const [inputVal,setInputVal]=useState('')
   const [suggestions,setSuggestions]=useState([])
   const ref=useRef(null)
@@ -37,7 +37,7 @@ function Search() {
   
   return (
     <div>
-      <img loading='lazy' className='w-5 cursor-pointer absolute top-[21px] ml-[198px]' src={search} alt="" />
+      <Search className='cursor-pointer absolute top-[21px] ml-[198px]'/>
       <Input className='py-[0.5px] font-nunito bg-inherit px-2 text-lg font-normal outline-none rounded-md border-2 border-black' value={inputVal} type="text" ref={ref} onChange={handleChange} placeholder='Search here...'
       />
       {suggestions.length>0 && (
@@ -55,4 +55,4 @@ function Search() {
   )
 }
 
-export default Search
+export default SearchProduct

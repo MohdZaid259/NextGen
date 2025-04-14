@@ -1,9 +1,9 @@
 import { lazy,Suspense } from 'react'
-const Soap=lazy(()=>import('../components/Soap'));
-const Juice=lazy(()=>import('../components/Juice'));
-const Oil=lazy(()=>import('../components/Oil'));
-const Banner=lazy(()=>import('../components/Banner'));
-const ProBanner=lazy(()=>import('../components/ProBanner'));
+const Soap=lazy(()=>import('../components/product/Soap'));
+const Juice=lazy(()=>import('../components/product/Juice'));
+const Oil=lazy(()=>import('../components/product/Oil'));
+const Banner=lazy(()=>import('../components/product/Banner'));
+const ProBanner=lazy(()=>import('../components/product/ProBanner'));
 import HashLoader from "react-spinners/HashLoader";
 
 function ProductPage() {

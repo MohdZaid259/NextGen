@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useSelector } from 'react-redux';
-import close from '../assets/icons/close.png'
+import {X} from 'lucide-react'
 import { useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
 import { FirebaseContext } from '../context/Firebase';
@@ -52,7 +52,7 @@ function Profile() {
   return (
     <div className='flex justify-center items-center'>
       <div className='bg-white relative text-sm mt-20 mx-5 sm:mx-0 mb-10 w-full sm:w-3/4 md:w-3/5 lg:w-2/5 p-5 font-nunito rounded shadow-md'>
-        <img loading='lazy' onClick={()=>navigate('/')} className='w-4 absolute right-7 cursor-pointer opacity-50 hover:opacity-100' src={close} alt="" />
+        <X onClick={()=>navigate('/')} className='absolute right-7 cursor-pointer opacity-50 hover:opacity-100'/>
         <div className='flex flex-col my-3 gap-1'>
           <span className=' text-gray-600 font-semibold'>Display picture</span>
           <div className='flex mt-2'>

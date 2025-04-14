@@ -5,7 +5,12 @@ const conf = {
   storageBucket: String(import.meta.env.VITE_FIREBASE_STORAGE_BUCKET),
   messagingSenderId: String(import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID),
   appId: String(import.meta.env.VITE_FIREBASE_APP_ID),
-  databaseURL: String(import.meta.env.VITE_FIREBASE_DATABASE_URL)
 };
+
+export const cloudinaryConf = {
+  cloudinaryCloudName: String(import.meta.env.VITE_CLOUDINARY_CLOUD_NAME),
+  cloudinaryApiKey: String(import.meta.env.VITE_CLOUDINARY_API_KEY),
+  cloudinaryApiSecret: String(import.meta.env.VITE_CLOUDINARY_API_SECRET),
+}
 
 export default conf

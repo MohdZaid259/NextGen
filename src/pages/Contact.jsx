@@ -1,6 +1,6 @@
 import { lazy,Suspense } from 'react'
-const Contact=lazy(()=>import('../components/Contact'));
-const Brands=lazy(()=>import('../components/Brands'));
+const Contact=lazy(()=>import('../components/contact/Contact'));
+const Brands=lazy(()=>import('../components/contact/Brands'));
 import HashLoader from "react-spinners/HashLoader";
 
 function ContactPage() {

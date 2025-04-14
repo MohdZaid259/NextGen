@@ -1,14 +1,11 @@
 import {useEffect, useState, useRef, useContext} from 'react'
 import { NavLink } from 'react-router-dom'
 import logo1 from '../assets/logo1.png'
-import close from '../assets/icons/close.png'
-import menu from '../assets/icons/menu.png'
-import cart from '../assets/icons/cart.png'
-import profile from '../assets/icons/profile.png'
+import {User,X,AlignJustify,ShoppingCart} from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import LoginPopup from './LoginPopup'
-import Search from './Search'
+import Search from './Search.jsx'
 import { useSelector } from 'react-redux'
 import Cart from './Cart'
 import { CardPanelContext } from "../context/cartPanel.jsx";
@@ -76,29 +73,29 @@ function Navbar() {
           <img loading='lazy' className='w-8 md:w-9' src={logo1} alt="" />
           <span className='md:pl-2 pt-1 text-lg md:text-xl font-bold'>NextGen</span>
         </NavLink>
-        <div className='flex justify-center gap-5 md:gap-6 items-center'>
+        <div className='flex justify-center gap-5 items-center'>
           <div onClick={handleHam} className="hamburger sm:hidden">
             {ham ? (
-              <img loading="lazy" className="w-6 md:w-7 p-1" src={close} alt="close" />
+              <X/>
             ) : (
-              <img loading="lazy" className="w-6 md:w-7" src={menu} alt="menu" />
+              <AlignJustify/>
             )}
           </div>
           <ul ref={menuRef} onClick={handleHam} className={`absolute sm:static top-16 right-2 z-10 flex flex-col sm:flex-row sm:gap-5 gap-1 ${ham ? 'flex bg-black/70 text-white px-7 py-5 rounded-lg sm:bg-transparent sm:text-current sm:px-0 sm:py-0 sm:rounded-none' : 'hidden sm:flex'}`}>
           {list.map((item,id)=>{
-            return <div key={id} className='relative'><NavLink to={item.path} className={({isActive})=>`${isActive?'text-emerald-600 active':''} navline max-w-max text-lg font-semibold md:text-xl font-quicksand hover:text-emerald-600`}>{item.name}</NavLink></div>
+            return <div key={id} className='relative'><NavLink to={item.path} className={({isActive})=>`${isActive?'text-emerald-600 active':''} navline mx-2 max-w-max text-lg font-semibold md:text-xl font-quicksand hover:text-emerald-600`}>{item.name}</NavLink></div>
           })}
           </ul>
           <div className='hidden lg:block'>
             <Search/>
           </div>
           <div onClick={()=>{user?navigate('/profile'):navigate('/signup')}} className={`${user?'':'hover:bg-pink-500 hover:invert p-[6px] cursor-pointer active:bg-pink-600 rounded-md '} flex justify-center items-center gap-2`}>
-            {user?<img loading='lazy' className='w-8 cursor-pointer rounded-full' alt='logo' src={user?.photoURL}/>:<img loading='lazy' className='cursor-pointer w-5 md:w-6' alt='profile' src={profile}/>}
+            {user?<img loading='lazy' className='w-8 cursor-pointer rounded-full' alt='logo' src={user?.photoURL}/>:<User/>}
             {user?'':<span className='text-base hidden md:block md:text-lg font-quicksand font-semibold '>SignUp</span>}
           </div>
-          {visible && <AnimatePop initial={{scale:0}} animate={{scale:1}} className={`animate-bounce duration-100 absolute top-16 right-5 md:right-[95px] drop-shadow-md`}/>}
+          {visible && <AnimatePop initial={{scale:0}} animate={{scale:1}} className={`animate-bounce duration-500 absolute top-16 right-5 md:right-[95px] xl:right-[140px] drop-shadow-md`}/>}
           <div className='relative cart'>
-            <img loading='lazy' onClick={togglePanel} className='cursor-pointer block w-[26px]' src={cart} alt="cart" />
+            <ShoppingCart onClick={togglePanel} className='cursor-pointer block'/>
             {totalQuantity>0 && <div className='absolute top-0 -right-2 w-4 h-4 rounded-full bg-red-500 p-1 text-white text-xs flex justify-center items-center'>{totalQuantity}</div>}
           </div>
         </div>

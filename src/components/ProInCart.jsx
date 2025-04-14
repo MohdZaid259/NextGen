@@ -1,4 +1,4 @@
-import trash from "../assets/icons/trash.png";
+import {Trash2} from 'lucide-react'
 import { useDispatch,useSelector } from "react-redux";
 import { increment,decrement, removeFromCart } from "../Redux/cartSlice";
 import useLocalStorage from '../hooks/useLocalStorage'
@@ -41,7 +41,7 @@ function ProInCart() {
                   </div>
                 </div>
                 <div className="flex flex-col justify-end gap-4 items-center">
-                  <img loading="lazy" onClick={()=>handleRemove(item)} className="w-4 opacity-70 hover:opacity-100 hover:scale-110 cursor-pointer aspect-square" src={trash} alt="" />
+                  <Trash2 onClick={()=>handleRemove(item)} className="opacity-70 hover:opacity-100 hover:scale-110 cursor-pointer"/>
                   <span className="text-[15px] text-green-600">+ ${Number(item.price)*item.quantity}</span>
                   {/* <span>{price}</span> */}
                 </div>

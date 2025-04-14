@@ -1,10 +1,7 @@
 import { useContext } from 'react';
 import missingCart from '../assets/missingCart.webp'
 import { useSelector } from 'react-redux';
-import close from '../assets/icons/close.png'
-import question from '../assets/icons/question.png'
-import tag from '../assets/icons/tag.png'
-import right from '../assets/icons/right.png'
+import {X,CircleHelp,Tags,ChevronRight} from 'lucide-react'
 import ProInCart from './ProInCart';
 import { useNavigate } from 'react-router-dom';
 import { CardPanelContext } from '../context/cartPanel';
@@ -22,7 +19,7 @@ function Cart() {
       <div className='font-nunito'>
       <div className='flex px-5 justify-between items-center p-3 pb-0'>
         <span className='text-2xl tracking-wider text-gray-700'>Cart</span>
-        <img onClick={togglePanel} className='h-12 cursor-pointer p-4 opacity-60 hover:opacity-100' src={close} alt="close" loading='lazy' />
+        <X onClick={togglePanel} className='cursor-pointer p-4 opacity-60 hover:opacity-100'/>
       </div>
       <hr className='mx-5 mb-2 border border-gray-300'/>
           {cartItem.length>0?<ProInCart/>:<img loading='lazy' className='w-full contrast-[0.9]' src={missingCart} alt="cart" />}
@@ -31,16 +28,16 @@ function Cart() {
       <div className='fixed w-full z-50 px-5 py-3 bottom-0 shadow-[0_0_10px_0px_rgba(0,0,0,0.3)]'>
         <div className='flex justify-between px-2 py-1'>
           <div className='flex gap-2 cursor-pointer items-center'>
-            <img className='h-4 opacity-80' src={tag} alt="tag" loading='lazy'/>
+            <Tags/>
             <span className='text-sm font-semibold'>Available Offers</span>
           </div>
-          <img className='h-3 cursor-pointer' src={right} alt="right" loading='lazy' />
+          <ChevronRight/>
         </div>
         <hr className='my-1 border border-gray-300'/>
         <div className='flex px-2 py-1 justify-between'>
           <div className='flex gap-2 items-center'>
             <span className='text-gray-700 text-xs tracking-widest'>SUBTOTAL</span>
-            <img className='h-4 opacity-50 cursor-pointer' src={question} alt="question" loading='lazy'/>
+            <CircleHelp className='opacity-50 cursor-pointer'/>
           </div>
           <span>$ {totalPrice.toFixed(2)}</span>
         </div>
@@ -53,7 +50,7 @@ function Cart() {
       </div>
     </>:<>
       <div className='p-10 h-full flex justify-center items-center'>
-      <img onClick={togglePanel} className='h-12 cursor-pointer absolute right-5 top-5 p-4 opacity-50 hover:opacity-100' src={close} alt="close" loading='lazy' />
+        <X onClick={togglePanel} className='h-12 cursor-pointer absolute right-5 top-5 p-4 opacity-50 hover:opacity-100'/>
         <div className='rounded-md bg-white drop-shadow-lg flex flex-col p-10 pb-7'>
           <img loading='lazy' className='w-56 m-auto mb-5' src={missingCart} alt="" />
           <span className='text-lg text-center'>Missing Cart items?</span>
