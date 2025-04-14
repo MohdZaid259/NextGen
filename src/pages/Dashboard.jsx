@@ -19,8 +19,6 @@ const renderContent = () => {
       return <ProductManagement />
     case "users":
       return <UserManagement />
-    case "settings":
-      return <div className="p-4">Settings content goes here</div>
     default:
       return <DashboardOverview />
   }

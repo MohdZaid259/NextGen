@@ -28,10 +28,9 @@ export default function ProductManagement() {
   useEffect(()=>{
     (async () => {
       const res = await getAllProducts()
-      console.log(res) // inifinte call??
       setProducts([...res])
     })()
-  },[products])
+  },[])
 
   const handleAddProduct = async () => {
     const imageUrl = await uploadToCloudinary(newProduct.image)
@@ -60,7 +59,6 @@ export default function ProductManagement() {
   }
 
   const handleDeleteProduct = async (id) => {
-    console.log('id',id)
     await deleteProduct(id)
     setProducts(products.filter((product) => product.id !== id));
   }

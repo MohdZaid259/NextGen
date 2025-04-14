@@ -2,23 +2,24 @@ import google from '../assets/icons/google.png'
 import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import { useContext } from 'react'
-import {login} from '../Redux/authSlice'
-import { FirebaseContext } from '../context/Firebase'
+import { login } from '../Redux/authSlice'
+import { FirebaseContext } from '../context/Firebase.jsx'
 import { useDispatch } from 'react-redux'
 import useLocalStorage from '../hooks/useLocalStorage'
 
 function SignUp() {
-  const {register,handleSubmit} = useForm()
-  const {signUp,signUpGoogle} = useContext(FirebaseContext)
+  const { signUp, signUpGoogle, putUser } = useContext(FirebaseContext)
+  const { register, handleSubmit } = useForm()
   const navigate=useNavigate()
   const dispatch = useDispatch()
-  const {setData} = useLocalStorage('auth')
+  const { setData } = useLocalStorage('auth')
 
   function handleGSignUp(){
     signUpGoogle()
       .then((res)=>{
         setData(res?.user?.providerData[0])
         dispatch(login(res?.user?.providerData[0]))
+        putUser(res?.user?.providerData[0])
         navigate('/')
       })
       .catch((err)=>console.log(err))
@@ -28,6 +29,7 @@ function SignUp() {
       .then((res)=>{
         setData(res?.user?.providerData[0])
         dispatch(login(res?.user?.providerData[0]))
+        putUser(res?.user?.providerData[0])
         navigate('/')
       }).catch((err)=>{
         console.log('Error in signUp: ',err)

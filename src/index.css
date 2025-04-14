@@ -4,7 +4,7 @@
 
 .bg-cont {
   position: relative;
-  background-image: url('./assets/hero.jpg');
+  background-image: url('./assets/home/hero.jpg');
   background-size: cover;
 }
 .bg-cont::before {

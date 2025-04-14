@@ -13,20 +13,20 @@ const GProvider = new GoogleAuthProvider()
 const FirebaseContext = createContext(null);
 
 // auth functions
-function signUp(email,password){
-  return createUserWithEmailAndPassword(auth,email,password)
+async function signUp(email,password){
+  return await createUserWithEmailAndPassword(auth,email,password)
 }
-function signUpGoogle(){
-  return signInWithPopup(auth,GProvider)
+async function signUpGoogle(){
+  return await signInWithPopup(auth,GProvider)
 }
-function logIn(email,password){
-  return signInWithEmailAndPassword(auth, email, password)
+async function logIn(email,password){
+  return await signInWithEmailAndPassword(auth, email, password)
 }
-function signOutUser(){
-  return signOut(auth)
+async function signOutUser(){
+  return await signOut(auth)
 }
-function resetPassword(email) {
-  return sendPasswordResetEmail(auth, email);
+async function resetPassword(email) {
+  return await sendPasswordResetEmail(auth, email);
 }
 
 // product management
@@ -67,10 +67,12 @@ async function deleteProduct(id) {
 
 // user management
 async function putUser(user) {
-  if (!user.name || !user.email || !user.orders || !user.joined || !user.avatar) {
+  if (!user.displayName || !user.email || !user.photoURL) {
     throw new Error("Missing required fields!");
   }
-  await addDoc(collection(db, "users"), user)
+  const d = new Date();
+  const userToAdd = { ...user, orders: 0, joined: `${d.getDate()}-${d.getMonth()+1}-${d.getFullYear()}`}
+  await addDoc(collection(db, "users"), userToAdd)
 }
 async function getAllUsers() {
   const querySnapshot = await getDocs(collection(db, "users"))

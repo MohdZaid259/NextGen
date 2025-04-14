@@ -6,17 +6,19 @@ import { FirebaseContext } from '../context/Firebase'
 import { useDispatch } from 'react-redux'
 
 function Login() {
+  const { putUser, logIn } = useContext(FirebaseContext)
   const { register, handleSubmit } = useForm()
   const navigate=useNavigate()
   const dispatch=useDispatch()
-  const { logIn } = useContext(FirebaseContext)
+  const { setData } = useLocalStorage('auth')
 
   function handleLogin({email,password}){
     logIn(email,password)
       .then((res)=>{
-        dispatch(login(res?.currentUser?.providerData[0]
-        ))
-        console.log(res.user)
+        setData(res?.currentUser?.providerData[0])
+        dispatch(login(res?.currentUser?.providerData[0]))
+        putUser(res?.currentUser?.providerData[0])
+        navigate('/')
       }).catch((err)=>{
         console.log('Error in logIn: ',err)
       })
@@ -33,10 +35,8 @@ function Login() {
           <div className='flex my-2 font-nunito flex-col gap-1'>
             <label htmlFor="name">Name</label>
             <input className={`rounded-sm p-1 outline-none border-2 ${errors?'focus:border-red-600':''} focus:border-green-500`} id='name' type="text" {...register('name',{required:'Enter your name'})}/>
-            {/* {errors && <div className='flex '><img className='w-4 mr-2 mb-[0.5] loading='lazy' object-contain' src={mark}/> <p className='text-red-600 text-sm'>{errors.name?.message}</p></div>} */}
             <label htmlFor="password">Password</label>
             <input className={`rounded-sm p-1 outline-none border-2  ${errors?'focus:border-red-600':''} focus:border-green-500`} id='password'  type="password" {...register('password',{required:'Enter your password',minLength:{value:5,message:'Minimum length should be 5'}})} />
-            {/* {errors && <div className='flex '><img className='w-4 mr-2 mb-[0.5] loading='lazy' object-contain' src={mark}/> <p className='text-red-600 text-sm'>{errors.password?.message}</p></div>}             */}
             <div className='mt-2 ml-1 flex items-center'>
               <input className='w-4 h-4 accent-emerald-400' type="checkbox" />
               <label className='ml-2 mt-[2px]' htmlFor="">Remember me</label>
