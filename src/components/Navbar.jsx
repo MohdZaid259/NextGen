@@ -1,7 +1,7 @@
-import {useEffect, useState, useRef, useContext} from 'react'
+import { useEffect, useState, useRef, useContext } from 'react'
 import { NavLink } from 'react-router-dom'
 import logo1 from '../assets/logo1.png'
-import {User,X,AlignJustify,ShoppingCart} from 'lucide-react'
+import { User,X,AlignJustify,ShoppingCart } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import LoginPopup from './LoginPopup'
@@ -9,6 +9,7 @@ import Search from './Search.jsx'
 import { useSelector } from 'react-redux'
 import Cart from './Cart'
 import { CardPanelContext } from "../context/cartPanel.jsx";
+import defaultDp from '@/assets/defaultDp.jpg'
 
 let list=[
   {name:'Home',path:''},
@@ -90,7 +91,7 @@ function Navbar() {
             <Search/>
           </div>
           <div onClick={()=>{user?navigate('/profile'):navigate('/signup')}} className={`${user?'':'hover:bg-pink-500 hover:invert p-[6px] cursor-pointer active:bg-pink-600 rounded-md '} flex justify-center items-center gap-2`}>
-            {user?<img loading='lazy' className='w-8 cursor-pointer rounded-full' alt='logo' src={user?.photoURL}/>:<User/>}
+            {user?<img loading='lazy' className='w-8 cursor-pointer rounded-full' alt='logo' src={user?.photoURL || defaultDp}/>:<User/>}
             {user?'':<span className='text-base hidden md:block md:text-lg font-quicksand font-semibold '>SignUp</span>}
           </div>
           {visible && <AnimatePop initial={{scale:0}} animate={{scale:1}} className={`animate-bounce duration-500 absolute top-16 right-5 md:right-[95px] xl:right-[140px] drop-shadow-md`}/>}

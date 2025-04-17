@@ -43,7 +43,7 @@ const renderContent = () => {
 
       <div className="flex-1 p-4 md:p-6">
         <div className="mb-6">
-          <h1 className="text-2xl font-bold tracking-tight">Dashboard</h1>
+          <h1 className="text-3xl font-bold tracking-tight">Dashboard</h1>
           <p className="text-muted-foreground">Manage your store and monitor performance</p>
         </div>
 

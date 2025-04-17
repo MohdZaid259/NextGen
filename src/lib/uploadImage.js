@@ -1,10 +1,12 @@
+import { cloudinaryConf } from "@/conf/conf";
+
 const uploadToCloudinary = async (file) => {
   const formData = new FormData();
   formData.append("file", file);
   formData.append("upload_preset", "nextgen_unsigned");
 
   try {
-    const res = await fetch("https://api.cloudinary.com/v1_1/dvk25m4cm/image/upload", {
+    const res = await fetch(cloudinaryConf.cloudinaryUrl, {
       method: "POST",
       body: formData,
     });

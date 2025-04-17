@@ -1,18 +1,52 @@
 import { useContext } from 'react';
 import missingCart from '../assets/missingCart.webp'
 import { useSelector } from 'react-redux';
-import {X,CircleHelp,Tags,ChevronRight} from 'lucide-react'
+import { X, CircleHelp, Tags, ChevronRight } from 'lucide-react'
 import ProInCart from './ProInCart';
 import { useNavigate } from 'react-router-dom';
 import { CardPanelContext } from '../context/cartPanel';
+import logo from '../assets/logo.png'
+import { razorpayConf } from '@/conf/conf';
+import { FirebaseContext } from '../context/Firebase.jsx'
 
 function Cart() {
+  const { placeOrder } = useContext(FirebaseContext)
+
   const navigate = useNavigate()
   const userData=useSelector(state=>state.auth.userData)
-  const {totalPrice}=useSelector(state=>state.cart)
+  const { totalPrice }=useSelector(state=>state.cart)
   const cartItem=useSelector(state=>state.cart.cartItems)
   const { togglePanel } = useContext(CardPanelContext);
 
+  const openRazorpay = () => {
+    const options = {
+      key: razorpayConf.razorpayApiKey,
+      amount: totalPrice*100,
+      currency: "USD",
+      name: "NextGen Herbals",
+      description: "Payment for your order",
+      image: logo,
+      handler: async function (response) {
+        alert("Payment successful!")
+        await placeOrder(response)
+      },
+      prefill: {
+        name: userData.displayName,
+        email: userData.email,
+        contact: "9341528174",
+      },
+      notes: {
+        address: "NextGen Herbals Customer",
+      },
+      theme: {
+        color: "#3399cc",
+      },
+    };
+  
+    const rzp = new window.Razorpay(options);
+    rzp.open();
+  };
+  
   return (
     <>
     {userData?<>
@@ -45,7 +79,7 @@ function Cart() {
           <input className='p-1 border outline-none border-black rounded-sm w-full text-sm' type="text" placeholder='Discount code or gift card'/>
           <button className='text-white bg-emerald-700 hover:bg-emerald-800 p-2 text-sm rounded-sm '>Apply</button>
         </div>
-        <button className='bg-emerald-500 my-2 w-full hover:bg-emerald-600 py-[6px] rounded-tl-2xl rounded-br-2xl text-white'>CHECK OUT</button>
+        <button onClick={openRazorpay} className='bg-emerald-500 my-2 w-full hover:bg-emerald-600 py-[6px] rounded-tl-2xl rounded-br-2xl text-white'>CHECK OUT</button>
       </div>  
       </div>
     </>:<>

@@ -12,8 +12,8 @@ function Input({
         type={type}
         ref={ref}
         className={` ${className}`}
-        {...props}
         placeholder={placeholder}
+        {...props}
       />
   )
 }

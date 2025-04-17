@@ -19,6 +19,7 @@ import ReturnPolicy from './pages/ReturnPolicy.jsx'
 import ShippingDelivery from './pages/ShippingDelivery.jsx'
 import TermsConditions from './pages/TermsConditions.jsx'
 import Dashboard from './pages/Dashboard.jsx'
+import Order from './pages/Order.jsx'
 
 const router=createBrowserRouter(
   createRoutesFromElements(
@@ -33,6 +34,7 @@ const router=createBrowserRouter(
       <Route path='login' element={<Login/>}/>
       <Route path='signup' element={<SignUp/>}/>
       <Route path='dashboard' element={<Dashboard/>}/>
+      <Route path='orders' element={<Order/>}/>
       <Route path='privacy-policy' element={<PrivacyPolicy/>}/>
       <Route path='return-policy' element={<ReturnPolicy/>}/>
       <Route path='shipping-delivery' element={<ShippingDelivery/>}/>

@@ -1,92 +1,157 @@
-import { useState } from 'react'
-import { useSelector } from 'react-redux';
-import { SquareArrowOutUpRight, X } from 'lucide-react'
+import { useEffect, useState } from "react"
+import { CalendarDays, Mail, Package, ShieldCheck, User } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+import { Separator } from "@/components/ui/separator"
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import useLocalStorage from '../hooks/useLocalStorage';
 import { useContext } from 'react';
 import { FirebaseContext } from '../context/Firebase';
-import useLocalStorage from '../hooks/useLocalStorage';
-import { useDispatch } from 'react-redux';
 import { logout } from '../Redux/authSlice';
 import { deleteCart } from '../Redux/cartSlice';
+import defaultDp from '@/assets/defaultDp.jpg'
+
+const mockUser = {
+  auth: "Admin",
+  displayName: "Mohd Zaid",
+  email: "razvizaid259@example.com",
+  joined: "2023-01-15",
+  photoURL: "https://lh3.googleusercontent.com/a/ACg8ocK0MjIfDOkJHqnQ97Pi1k7QtgrqawMY6NULw1kJasLS7YuviU0=s96-c",
+  uid: "116979052881843192047",
+}
 
 function Profile() {
-  const navigate=useNavigate()
-  const userData=useSelector(state=>state.auth.userData)
-  const {removeData} = useLocalStorage('auth')
-  const {removeCartData} = useLocalStorage('localCart')
   const dispatch = useDispatch()
-  
-  const {signOutUser} = useContext(FirebaseContext)
+  const navigate = useNavigate()
+  const [user,setUser] = useState(mockUser)
+  const {removeData:removeAuthData} = useLocalStorage('auth')
+  const {removeCartData} = useLocalStorage('localCart')
+  const {signOutUser,getCurrentUser} = useContext(FirebaseContext)
 
-  const [data,setData]=useState({
-    name: userData?.displayName || '',
-    username:userData?.email || '',
-    status:'Active',
-    about:''
-  })
+  useEffect(()=>{
+    getCurrentUser()
+      .then((res)=>{
+        setUser(res)
+      })
+  },[])
 
-  function handleChange(e){
-    const {name,value}=e.target
-    setData((prev)=>({
-      ...prev,
-      [name]:value
-    }))
-  }
-  function toggleStatus(){
-    setData((prev) => ({
-      ...prev,
-      status: prev.status === 'Active' ? 'Inactive' : 'Active'
-    }));
-  }
-  function submitInfo(){
-
-  }
   function handleLogout(){
     signOutUser()
-    removeData()
+    removeAuthData()
     removeCartData()
     dispatch(deleteCart())
     dispatch(logout())
     navigate('/')
   }
+
   return (
-    <div className='flex py-16 justify-center items-center'>
-      <div className='bg-white relative text-sm mt-20 mx-5 sm:mx-0 mb-10 w-full sm:w-3/4 md:w-3/5 lg:w-2/5 p-5 font-nunito rounded shadow-md'>
-        <X onClick={()=>navigate('/')} className='absolute right-7 cursor-pointer opacity-50 hover:opacity-100'/>
-        <div className='flex flex-col my-3 gap-1'>
-          <span className=' text-gray-600 font-semibold'>Display picture</span>
-          <div className='flex mt-2'>
-            <img loading='lazy' className='w-12 rounded-md mx-5' src={userData?.photoURL} alt="logo" />
-            <div className='flex justify-start items-center'>
-            <button className='bg-emerald-500 mr-3 rounded-md active:bg-emerald-500 hover:bg-emerald-600 text-white px-2 py-[6px]'>Change picture</button>
-            <button className='text-red-500  hover:bg-red-500 hover:text-white active:bg-red-500 px-2 py-[6px] border rounded-md'>Delete picture</button>
+    <div className="h-screen flex justify-center items-center p-10 ">
+      <div className="grid gap-6 md:grid-cols-[300px_1fr]">
+        <Card>
+          <CardHeader className="text-center">
+            <div className="flex justify-center mb-4">
+              <div className="relative w-24 h-24 rounded-full overflow-hidden border-4 border-background">
+                <img src={user?.photoURL || defaultDp} alt={user?.displayName} className="object-cover" />
+              </div>
             </div>
-          </div>
-        </div>
-        <div className='flex flex-col my-3 gap-1'>
-          <span className=' text-gray-600 font-semibold'>Profile name</span>
-          <input className='px-2 py-2 border w-full rounded focus:border-emerald-500 outline-none' name='name' type="text" onChange={handleChange} value={data.name} />
-        </div>
-        <div className='flex flex-col my-3 gap-1'>
-          <span className=' text-gray-600 font-semibold'>Username</span>
-          <input className='px-2 py-2 border w-full rounded' type="text" value={'@ '+data.username} disabled/>
-        </div>
-        <div className='flex flex-col my-3 gap-1'>
-          <span className=' text-gray-600 font-semibold'>Status recently</span>
-          <input className='px-2 py-2 border w-full rounded focus:border-emerald-500 cursor-pointer outline-none' type="text" onClick={toggleStatus} readOnly name='status' value={data.status}/>
-        </div>
-        <div className='flex flex-col my-3 gap-1'>
-          <span className=' text-gray-600 font-semibold'>About me</span>
-          <input className='px-2 py-2 border w-full rounded focus:border-emerald-500 outline-none' type="text" placeholder='A brief introduction of yourself...' onChange={handleChange} name='about' value={data.about}/>
-        </div>
-        <div className='flex justify-between items-center'>
-          <div className='flex justify-end items-center gap-2'>
-            <button className='text-sm text-white bg-emerald-500 font-semibold hover:bg-emerald-600 active:bg-emerald-500 px-2 py-[6px] rounded-md' onClick={submitInfo}>Save Changes</button>
-            <button className=' text-white bg-red-500 font-semibold text-sm hover:bg-red-600 active:bg-red-500 px-2 py-[6px] rounded-md' onClick={handleLogout}>Logout</button>
-          </div>
-          <Button onClick={()=>navigate('/dashboard')}><SquareArrowOutUpRight/>Visit Dashboard</Button>
-        </div>
+            <CardTitle>{user?.displayName}</CardTitle>
+            <CardDescription className="flex items-center justify-center gap-1">
+              {user?.auth === "Admin" ? (
+                <>
+                  <ShieldCheck className="h-4 w-4 text-primary" />
+                  Administrator
+                </>
+              ) : (
+                <>
+                  <User className="h-4 w-4" />
+                  Customer
+                </>
+              )}
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-4">
+              <div className="flex items-center gap-2">
+                <Mail className="h-4 w-4 opacity-70" />
+                <span>{user?.email}</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <CalendarDays className="h-4 w-4 opacity-70" />
+                <span>Joined {user?.joined}</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <User className="h-4 w-4 opacity-70" />
+                <span className="text-sm text-muted-foreground">UID: {user?.uid}</span>
+              </div>
+            </div>
+          </CardContent>
+          <CardFooter className="flex flex-col gap-2">
+            {user?.auth === "Admin" ? (
+              <Button onClick={()=>navigate('/dashboard')} className="w-full">
+                <ShieldCheck className="mr-2 h-4 w-4" />
+                  Admin Dashboard
+              </Button>
+            ) : (
+              <Button onClick={()=>navigate('/orders')} className="w-full">
+                <Package className="mr-2 h-4 w-4" />
+                  My Orders
+              </Button>
+            )}
+            <Button variant="outline" onClick={handleLogout} className="w-full">
+              Logout
+            </Button>
+          </CardFooter>
+        </Card>
+
+        <Card>
+          <CardHeader>
+            <CardTitle className='text-2xl'>Account Details</CardTitle>
+            <CardDescription>Manage your account information and preferences</CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-6">
+            <div>
+              <h3 className="font-medium mb-2">Personal Information</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <p className="text-sm text-muted-foreground">Full Name</p>
+                  <p>{user?.displayName}</p>
+                </div>
+                <div>
+                  <p className="text-sm text-muted-foreground">Email Address</p>
+                  <p>{user?.email}</p>
+                </div>
+              </div>
+            </div>
+
+            <Separator/>
+
+            <div>
+              <h3 className="font-medium mb-2">Account Status</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <p className="text-sm text-muted-foreground">Account Type</p>
+                  <p>{user?.auth}</p>
+                </div>
+                <div>
+                  <p className="text-sm text-muted-foreground">Member Since</p>
+                  <p>{user?.joined}</p>
+                </div>
+              </div>
+            </div>
+
+            <Separator/>
+
+            <div>
+              <h3 className="font-medium mb-2">Recent Activity</h3>
+              <p className="text-sm text-muted-foreground">
+                {user?.auth === "Admin"
+                  ? "You last accessed the admin dashboard 2 days ago"
+                  : "You placed an order 5 days ago"}
+              </p>
+            </div>
+          </CardContent>
+        </Card>
       </div>
     </div>
   )

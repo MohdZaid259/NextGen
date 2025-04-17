@@ -1,8 +1,8 @@
 import conf from '../conf/conf.js'
 import { createContext } from "react";
 import { initializeApp } from "firebase/app";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
-import { getFirestore, collection, addDoc, getDocs, doc, getDoc, deleteDoc, query, where, serverTimestamp, updateDoc } from "firebase/firestore";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, GoogleAuthProvider, signInWithPopup, onAuthStateChanged } from "firebase/auth";
+import { getFirestore, collection, addDoc, getDocs, doc, getDoc, deleteDoc, query, where, updateDoc } from "firebase/firestore";
 
 const firebaseConfig = conf
 const FirebaseApp = initializeApp(firebaseConfig) // initializing app
@@ -70,8 +70,14 @@ async function putUser(user) {
   if (!user.displayName || !user.email || !user.photoURL) {
     throw new Error("Missing required fields!");
   }
+
+  const q = query(collection(db, "users"), where("email", "==", user.email));
+  const querySnapshot = await getDocs(q);
+  if (!querySnapshot.empty) return
+  
   const d = new Date();
-  const userToAdd = { ...user, orders: 0, joined: `${d.getDate()}-${d.getMonth()+1}-${d.getFullYear()}`}
+  const auth = user.email=='razvizaid259@gmail.com' ? 'Admin' : 'Customer'
+  const userToAdd = { ...user, orders: 0, auth: auth, joined: `${d.getDate()}-${d.getMonth()+1}-${d.getFullYear()}`}
   await addDoc(collection(db, "users"), userToAdd)
 }
 async function getAllUsers() {
@@ -82,21 +88,33 @@ async function getAllUsers() {
   })
   return users
 }
-async function getUserProfile(id) {
-  const docRef = doc(db, "users", id);
-  const docSnap = await getDoc(docRef);
-  return docSnap.exists() ? docSnap.data() : null;
+async function getCurrentUser() {
+  const email = auth?.currentUser?.email;
+  if (!email) return
+
+  const q = query(collection(db, "users"), where("email", "==", email));
+  const querySnapshot = await getDocs(q)
+  const doc = querySnapshot.docs[0]
+  return {...doc.data()} || null
 }
 
 // order management
-async function placeOrder(id, totalAmount, status = "Pending", imageUrl = "") {
+async function placeOrder(orderData) {
   return await addDoc(collection(db, "orders"), {
-    UserID: id,
-    Timestamp: serverTimestamp(),
-    TotalAmount: totalAmount,
-    Status: status,
-    ImageURL: imageUrl
+    orderId:orderData.orderId,
+    UserID: orderData.userId,
+    Timestamp: orderData.timestamp,
+    TotalAmount: orderData.totalAmount,
+    Status: orderData.status
   });
+}
+async function getAllOrders() {
+  const querySnapshot = await getDocs(collection(db, "orders"))
+  const orders = []
+  querySnapshot.forEach((doc) => {
+    orders.push({ ...doc.data() })
+  })
+  return orders
 }
 async function cancelOrder(id) {
   const orderRef = doc(db, "orders", id);
@@ -105,8 +123,8 @@ async function cancelOrder(id) {
 
 const authFunctions = { signUp, signUpGoogle, logIn, signOutUser, resetPassword };
 const productFunctions = { putProduct, getAllProducts, getProductById, getFilteredProducts, editProduct, deleteProduct };
-const userFunctions = { putUser, getAllUsers, getUserProfile };
-const orderFunctions = { placeOrder, cancelOrder };
+const userFunctions = { putUser, getAllUsers, getCurrentUser };
+const orderFunctions = { placeOrder, getAllOrders, cancelOrder };
 
 const FirebaseProvider = ({children}) => { 
   const value = {
@@ -125,4 +143,4 @@ const FirebaseProvider = ({children}) => {
   )
 }
 
-export { FirebaseProvider,FirebaseContext }
+export { FirebaseProvider, FirebaseContext }

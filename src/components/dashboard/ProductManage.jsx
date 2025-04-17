@@ -67,15 +67,6 @@ export default function ProductManagement() {
     setCurrentProduct(product)
     setIsEditDialogOpen(true)
   }
-
-  const handleLoadMore = () => {
-    setVisibleProducts((prev) => prev + 6)
-  }
-
-  const handleSeeLess = () => {
-    setVisibleProducts(6)
-  }
-
   
   return (
     <div className="space-y-4">
@@ -199,11 +190,11 @@ export default function ProductManagement() {
         <div className="flex justify-center items-center py-4 gap-4">
           {visibleProducts < products.length && (
             <div className="flex justify-center py-4">
-              <Button onClick={handleLoadMore}>Load More</Button>
+              <Button onClick={()=>setVisibleProducts((prev) => prev + 6)}>Load More</Button>
             </div>
           )}
           {visibleProducts > 10 && (
-            <Button variant='outline' onClick={handleSeeLess}>See Less</Button>
+            <Button variant='outline' onClick={()=>setVisibleProducts(6)}>See Less</Button>
           )}
         </div>
       </div>

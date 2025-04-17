@@ -32,7 +32,7 @@ export default function UserManagement() {
     (async () => {
       const res = await getAllUsers()
       const newUsers = res.filter(
-        newUser => !users.some(existingUser => existingUser.photoURL === newUser.photoURL)
+        newUser => !users.some(existingUser => existingUser.displayName === newUser.displayName)
       );
       setUsers(prevUsers=>[...prevUsers,...newUsers])
     })()
