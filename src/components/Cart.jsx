@@ -57,8 +57,6 @@ function Cart() {
       </div>
       <hr className='mx-5 mb-2 border border-gray-300'/>
           {cartItem.length>0?<ProInCart/>:<img loading='lazy' className='w-full contrast-[0.9]' src={missingCart} alt="cart" />}
-      <hr className='mx-5 my-2 border border-gray-300'/>
-      <span className='text-lg mx-5 text-gray-800 tracking-widerd'>Recommended Products</span>
       <div className='fixed w-full z-50 px-5 py-3 bottom-0 shadow-[0_0_10px_0px_rgba(0,0,0,0.3)]'>
         <div className='flex justify-between px-2 py-1'>
           <div className='flex gap-2 cursor-pointer items-center'>

@@ -59,8 +59,10 @@ function SignUp() {
           <button className='bg-emerald-500 active:bg-emerald-500 hover:bg-emerald-600 text-white font-nunito text-lg font-semibold py-1 rounded-md my-3' type='submit'>SignUp</button>
         </form>
         <hr />
-        <span className='mt-3 font-nunito text-gray-500 text-center'>Already have an account?</span>
-        <span className='text-center font-nunito hover:text-emerald-600 hover:underline text-green-500' onClick={()=>navigate('/login')}>LogIn</span>
+        <div className='mt-3 gap-1 flex justify-center items-center'>
+          <span className='font-nunito text-gray-500 text-center'>Already have an account?</span>
+          <span className='text-center font-nunito hover:text-emerald-600 hover:underline text-green-500' onClick={()=>navigate('/login')}>LogIn</span>
+        </div>
       </div>
     </div>
   )

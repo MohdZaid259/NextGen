@@ -49,7 +49,6 @@ function About() {
               </motion.div>
             </div>
       )})}
-      <motion.span initial={{opacity:0}} whileInView={{opacity:1}} transition={{duration:1,delay:0.5}} onClick={()=>navigate('/product')} className='hover:underline cursor-pointer text-blue-600 font-serif  text-base sm:text-lg my-3 sm:my-5 flex justify-center'><SquareArrowOutUpRight className='mr-1'/>Read more &gt;&gt;</motion.span>
       <Newsletter/>
     </div>
   )

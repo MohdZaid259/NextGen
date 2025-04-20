@@ -21,11 +21,12 @@ function Herby() {
   return (
     <div className="container h-dvh flex justify-center items-center">
       <iframe
+        height='700'
+        width='700'
         loading="lazy"
         className="chat sm:rounded shadow-lg h-full sm:h-[500px]"
         allow="microphone;"
-        width="400"
-        src="https://console.dialogflow.com/api-client/demo/embedded/0bb6ab00-08c3-4b83-a11e-9bf552797576"
+        src="//console.dialogflow.com/api-client/demo/embedded/0bb6ab00-08c3-4b83-a11e-9bf552797576"
       ></iframe>
     </div>
   );

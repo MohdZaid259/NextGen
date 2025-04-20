@@ -52,7 +52,7 @@ function Product() {
   }
 
   return (
-    <div className='overflow-x-hidden'>
+    <div className='overflow-x-hidden mb-10'>
       {list.map((item,key)=>(
         <motion.div initial='hidden' whileInView='visible' variants={key % 2 === 0 ? textVariants : textVariants1} transition={{duration:0.5,delay:0.5}} key={key} className={`my-3 sm:my-5 mx-2 md:mx-5 lg:mx-10 bg-gradient-to-r flex ${key%2==0?'flex-row-reverse rounded-l sm:rounded-r-full':'sm:rounded-l-full rounded-r'} from-emerald-400 to-white`}>
           <img loading='lazy' className='shadow-lg object-cover md:rounded-full rounded-md hidden sm:block aspect-[3/2] sm:w-48 lg:w-96' src={item.image} alt="product" />
@@ -63,7 +63,6 @@ function Product() {
           </div>
         </motion.div>
       ))}
-      <motion.span initial={{opacity:0}} whileInView={{opacity:1}} transition={{duration:1,delay:0.5}} onClick={()=>navigate('/product')} className='hover:underline my-2 sm:my-5 cursor-pointer text-blue-600 font-serif text-lg flex justify-center'><ExternalLink className='mr-2 mt-[6px]'/>Read more &gt;&gt;</motion.span>
     </div>
   )
 }

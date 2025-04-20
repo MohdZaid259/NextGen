@@ -4,12 +4,13 @@ import { useContext } from 'react'
 import { login } from '../Redux/authSlice'
 import { FirebaseContext } from '../context/Firebase'
 import { useDispatch } from 'react-redux'
+import useLocalStorage from '@/hooks/useLocalStorage'
 
 function Login() {
   const navigate=useNavigate()
   const dispatch=useDispatch()
   const { putUser, logIn ,resetPassword } = useContext(FirebaseContext)
-  const { register, handleSubmit } = useForm()
+  const { register, handleSubmit, watch } = useForm()
   const { setData } = useLocalStorage('auth')
 
   const email = watch('email')
@@ -54,8 +55,10 @@ function Login() {
           </div>
         </form>
         <hr />
-        <span className='mt-3 font-nunito text-gray-500 text-center'>Don&apos;t have an account?</span>
-        <span className='text-center font-nunito hover:text-emerald-600 hover:underline text-green-500' onClick={()=>navigate('/signup')}>Sign Up</span>
+        <div className='mt-3 gap-1 flex justify-center items-center'>
+          <span className='font-nunito text-gray-500 text-center'>Don&apos;t have an account?</span>
+          <span className='text-center font-nunito hover:text-emerald-600 hover:underline text-green-500' onClick={()=>navigate('/signup')}>Sign Up</span>
+        </div>
       </div>
     </div>
   )

@@ -1,6 +1,8 @@
+import { useContext, useEffect, useState } from "react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { ArrowUpRight, ArrowDownRight, Users, ShoppingCart, DollarSign, Activity } from "lucide-react"
+import { Users, ShoppingCart, DollarSign } from "lucide-react"
 import { ResponsiveContainer, LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from "recharts"
+import { FirebaseContext } from '../../context/Firebase.jsx'
 
 const salesData = [
   { name: "Jan", sales: 2000 },
@@ -23,26 +25,43 @@ const userActivityData = [
   { name: "Sun", visits: 20, orders: 6 },
 ]
 
-export default function DashboardOverview() {
+function DashboardOverview() {
+  const { getAllUsers, getAllOrders } = useContext(FirebaseContext)
+  const [ data, setData ] = useState({
+    totalUsers:0,
+    totalOrders:0
+  }) 
+
+  useEffect(()=>{
+    (async ()=>{
+      const allOrders = await getAllOrders()
+      const allUsers = await getAllUsers()
+
+      setData({ totalUsers: allUsers.length,
+                totalOrders:allOrders.length
+              })
+    })()
+  },[])
+
   return (
     <div className="space-y-6">
       <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 lg:mr-10">
         <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 p-4 pb-2">
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Total Revenue</CardTitle>
             <DollarSign className="h-6 w-6 text-muted-foreground" />
           </CardHeader>
-          <CardContent className='p-4 pt-0'>
+          <CardContent>
             <div className="text-lg sm:text-2xl font-bold">$5,231.89</div>
           </CardContent>
         </Card>
         <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 p-4 pb-2">
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">New Customers</CardTitle>
             <Users className="h-6 w-6 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">+250</div>
+            <div className="text-lg sm:text-2xl font-bold">850+</div>
           </CardContent>
         </Card>
         <Card>
@@ -51,12 +70,12 @@ export default function DashboardOverview() {
             <ShoppingCart className="h-6 w-6 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">+1,234</div>
+            <div className="text-lg sm:text-2xl font-bold">1,234+</div>
           </CardContent>
         </Card>
       </div>
 
-      <div className="grid gap-4 grid-cols-1 lg:grid-cols-2 lg:mr-10">
+      <div className="hidden sm:grid gap-4 grid-cols-1 lg:grid-cols-2 lg:mr-10">
         <Card>
           <CardHeader>
             <CardTitle>Sales Overview</CardTitle>
@@ -98,3 +117,5 @@ export default function DashboardOverview() {
     </div>
   )
 }
+
+export default DashboardOverview

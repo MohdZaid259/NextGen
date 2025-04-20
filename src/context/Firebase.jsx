@@ -44,14 +44,6 @@ async function getAllProducts() {
   })
   return products
 }
-async function getFilteredProducts(filters) {
-  let q = query(collection(db, "products"));
-  if (filters.category) q = query(q, where("category", "==", filters.category));
-  if (filters.priceMin) q = query(q, where("price", ">=", filters.priceMin));
-  if (filters.priceMax) q = query(q, where("price", "<=", filters.priceMax));
-  const snapshot = await getDocs(q);
-  return snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-}
 async function getProductById(id) {
   const docRef = doc(db, "products", id);
   const docSnap = await getDoc(docRef);
@@ -122,7 +114,7 @@ async function cancelOrder(id) {
 }
 
 const authFunctions = { signUp, signUpGoogle, logIn, signOutUser, resetPassword };
-const productFunctions = { putProduct, getAllProducts, getProductById, getFilteredProducts, editProduct, deleteProduct };
+const productFunctions = { putProduct, getAllProducts, getProductById, editProduct, deleteProduct };
 const userFunctions = { putUser, getAllUsers, getCurrentUser };
 const orderFunctions = { placeOrder, getAllOrders, cancelOrder };
 
