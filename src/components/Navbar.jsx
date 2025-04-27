@@ -49,19 +49,17 @@ function Navbar() {
   },[user])
 
   function handleHam(){
-    setHam(!ham)
+    setHam(prev=>!prev)
   }
 
   useEffect(()=>{
     function exit(e){
-      if(menuRef.current && !menuRef.current.contains(e.target) && !e.target.closest('.hamburger')) {
-        setHam(false)
-      }
       if (isOpen && cartRef.current && !cartRef.current.contains(e.target) && !e.target.closest(`.cart`)) {
         togglePanel();
       }
     }
-  document.addEventListener('click',exit)
+    document.addEventListener('click',exit)
+
     return ()=>{
       document.removeEventListener('click',exit)
     }
@@ -75,7 +73,7 @@ function Navbar() {
           <span className='md:pl-2 pt-1 text-lg md:text-xl font-bold'>NextGen</span>
         </NavLink>
         <div className='flex justify-center gap-5 items-center'>
-          <div onClick={handleHam} className="hamburger sm:hidden">
+          <div onClick={handleHam} className="hamburger sm:hidden cursor-pointer">
             {ham ? (
               <X/>
             ) : (

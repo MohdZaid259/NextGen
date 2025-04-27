@@ -22,7 +22,6 @@ const heading ={
   visible:{opacity:1,scale:1,transition:{delay:0.5, duration:0.5}}
 }
 
-
   return (
     <>
       <motion.h1 initial='hidden' whileInView='visible' variants={heading} transition={{duration:0.2,delay:0.2}} className='sm:text-3xl my-4 text-2xl sm:my-7 font-semibold flex justify-center'>Herbel Soaps</motion.h1>
