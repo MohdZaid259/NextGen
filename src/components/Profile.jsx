@@ -46,9 +46,9 @@ function Profile() {
   }
 
   return (
-    <div className="h-screen flex justify-center items-center p-10 ">
+    <div className="h-screen flex justify-center items-center p-2 md:p-10 scale-75 md:scale-100">
       <div className="grid gap-6 md:grid-cols-[300px_1fr]">
-        <Card>
+        <Card className='mt-48 md:mt-0'>
           <CardHeader className="text-center">
             <div className="flex justify-center mb-4">
               <div className="relative w-24 h-24 rounded-full overflow-hidden border-4 border-background">
@@ -104,7 +104,7 @@ function Profile() {
           </CardFooter>
         </Card>
 
-        <Card>
+        <Card className=''>
           <CardHeader>
             <CardTitle className='text-2xl'>Account Details</CardTitle>
             <CardDescription>Manage your account information and preferences</CardDescription>
@@ -142,7 +142,7 @@ function Profile() {
 
             <Separator/>
 
-            <div>
+            <div className="">
               <h3 className="font-medium mb-2">Recent Activity</h3>
               <p className="text-sm text-muted-foreground">
                 {user?.auth === "Admin"
